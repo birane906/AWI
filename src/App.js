@@ -5,13 +5,19 @@ const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
 
-const formValid = formErrors => {
+const formValid = ({formErrors, ...rest}) => {
   let valid = true;
-  Object.values(formErrors).forEach(val => {val.length > 0 && (valid = false);
+
+  //validate if form errors is empty
+  Object.values(formErrors).forEach(val => {
+    val.length > 0 && (valid = false);
 });
 
-
-
+  //validate if form errors is filled out
+  Object.values(rest).forEach(val =>{
+    val== null && (valid = false)
+  });
+  
 
 return valid;
 };
@@ -38,7 +44,7 @@ class App extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    if(formValid(this.state.formErrors)){
+    if(formValid(this.state)){
       console.log(`-- Inscription -- 
       Prénom : ${this.state.firstName}
       Nom : ${this.state.lastName}
