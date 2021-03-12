@@ -6,42 +6,23 @@ const Login = () => {
 
     const [ login, setLogin ] = useState(null)
     const [ password, setPassword ] = useState(null)
-    const [ formErrors, setFormErrors ] = useState({
-        login: "",
-        password: ""
-    })
-    const [ ping, setPing ] = useState(null)
+    const history = useHistory()
 
-    const formValid = ({ formErrors, ...rest }) => {
-        let valid = true;
-
-        //validate if form errors is empty
-        Object.values(formErrors).forEach(val => {
-            val.length > 0 && (valid = false);
-            console.log(val);
-        });
-
-        //validate if form errors is filled out
-        Object.values(rest).forEach(val => {
-            val == null && (valid = false)
-            console.log(val);
-        });
-        return valid;
+    const formValid = () => {
+        return login != "" && password != "";
     };
 
     const handleSubmit = e => {
         e.preventDefault();
 
-        if (formValid({formErrors, login, password})) {
+        if (formValid()) {
             console.log(`-- Connexion -- 
-          Login : ${this.state.login}
-          Mot de passe : ${this.state.password}
+          Login : ${login}
+          Mot de passe : ${password}
           `);
 
             fetch("http://localhost:8080/api/ping")
-                .then(res => res.text())
-                .then(res => this.setState({ ping: res }))
-                .then(res => console.log("Done"))
+                .then( _ => history.push("/dashboard"))
 
         } else {
             console.error('Formulaire invalide - Message derreur')
@@ -52,24 +33,19 @@ const Login = () => {
         e.preventDefault();
         const { name, value } = e.target;
 
-        const newFormErrors = { ...formErrors }
         switch (name) {
             case 'login':
-                newFormErrors.login = value.length < 6 ? 'minimum 6 caractères' : "";
+                setLogin(value)
                 break;
 
             case 'password':
-                newFormErrors.password = value.length < 6 ? 'minimum 6 caractères' : "";
+                setPassword(value)
                 break;
 
             default:
                 break;
         }
-
-        console.log(formErrors);
-        setFormErrors(newFormErrors)
-        console.log(formErrors);
-
+        console.log(login, password);
     };
 
     return (
@@ -79,26 +55,19 @@ const Login = () => {
                 <form onSubmit={handleSubmit} noValidate>
                     <div className="login">
                         <label htmlFor="login">Login</label>
-                        <input type="login" className={formErrors.login.length > 0 ? "error" : null} placeholder="Login" name="login" noValidate onChange={handleChange} />
-                        {formErrors.login.length > 0 && (
-                            <span className="errorMessage"> {formErrors.login}</span>
-                        )}
+                        <input type="login" className={login != null ? (login.length == 0 ? "error" : null) : null} placeholder="Login" name="login" noValidate onChange={handleChange} />
                     </div>
 
 
                     <div className="password">
                         <label htmlFor="password"> Mot de passe</label>
-                        <input type="password" className={formErrors.password.length > 0 ? "error" : null} placeholder="Mot de passe" name="password" noValidate onChange={handleChange} />
-                        {formErrors.password.length > 0 && (
-                            <span className="errorMessage"> {formErrors.password}</span>
-                        )}
+                        <input type="password" className={password != null ? (password.length == 0 ? "error" : null) : null} placeholder="Mot de passe" name="password" noValidate onChange={handleChange} />
                     </div>
 
 
                     <div className="logInAccount">
-                        <button type="submit">Connexion</button>
+                        <button type="submit" disabled={!formValid()}>Connexion</button>
                     </div>
-                    <p>{ping}</p>
                 </form>
             </div>
         </div>
