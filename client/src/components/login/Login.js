@@ -9,7 +9,7 @@ const Login = () => {
     const history = useHistory()
 
     const formValid = () => {
-        return login != "" && password != "";
+        return login && password;
     };
 
     const handleSubmit = e => {
