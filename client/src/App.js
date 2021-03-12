@@ -6,7 +6,7 @@ import './App.css';
 import Login from "./components/login/Login"
 import Dashboard from "./components/dashboard/Dashboard"
 
-const browserHistory = createBrowserHistory()
+const browserHistory = createBrowserHistory();
 
 const App = () => {
     return (
