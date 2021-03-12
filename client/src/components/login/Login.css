@@ -118,7 +118,7 @@ light green: #A3C4BC
     letter-spacing: 1px;
     margin-bottom: 0.25em;
   }
-  
+
   .logInAccount button:hover {
     color: #519e8a;
     background-color: #fff;
@@ -128,4 +128,17 @@ light green: #A3C4BC
   .logInAccount small {
     color: #999;
     font-weight: lighter;
+  }
+
+  .logInAccount button:disabled {
+    background-color: #91d1c0;
+    color: #fff;
+    border: 2px solid #fff;
+    width: 100%;
+    margin-top: 1em;
+    padding: 8px 0px;
+    font-size: 1em;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-bottom: 0.25em;
   }
