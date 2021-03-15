@@ -1,17 +1,14 @@
 import React from "react";
-import { Router, Route, Redirect } from "react-router";
-import { createBrowserHistory } from "history"
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import './App.css';
 
 import Login from "./components/login/Login"
 import Dashboard from "./components/dashboard/Dashboard"
 
-const browserHistory = createBrowserHistory();
-
 const App = () => {
     return (
         <div>
-            <Router history={browserHistory}>
+            <Router>
                 <Route exact path="/">
                     <Redirect to="/login"/>
                 </Route>
