@@ -1,4 +1,6 @@
 import { React, useState } from 'react';
+import { Route } from 'react-router';
+import { Link } from 'react-router-dom';
 import "./Dashboard.css"
 
 const Dashboard = (props) => {
@@ -15,17 +17,26 @@ const Dashboard = (props) => {
 
     return (
         <div>
-            <div id="mySidenav" class="sidenav" style={{ width: navWidth}}>
+            <div id="mySidenav" className="sidenav" style={{ width: navWidth}}>
                 {
                     props.children.map((value, index) => {
                         return (
-                            <a href={value.props.path} key={index}>{value.props.title}</a>
+                            <Link to={value.props.path} onClick={closeNav} key={index}>{value.props.title}</Link>
                         )
                     })
                 }
-                <a href="javascript:void(0)" class="closebtn" onClick={closeNav}>&times;</a>
+                <p className="closebtn" onClick={closeNav}>&times;</p>
             </div>
             <span style={{"fontSize":"30px","cursor":"pointer"}} onClick={openNav}>&#9776;</span>
+            <div className="dashboardContent">
+                {
+                    props.children.map((value, index) => {
+                        return (
+                            <Route path={value.props.path} component={() => {return value}} key={index}/>
+                        )
+                    })
+                }
+            </div>
         </div>
     );
 };
