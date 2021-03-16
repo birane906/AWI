@@ -11,7 +11,7 @@
     padding-top: 60px;
   }
   
-  .sidenav a, .sidenav p {
+  .sidenav a, .closebtn {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -20,14 +20,17 @@
     transition: 0.3s;
   }
   
-  .sidenav a:hover, .sidenav p:hover {
+  .sidenav a:hover, .closebtn:hover {
     cursor: pointer;
     color: #f1f1f1;
     text-decoration: none;
-    background-color: #333;
     transition: 0.3s;
   }
   
+  .sidenav a:hover {
+    background-color: #333;
+  }
+
   .sidenav .closebtn {
     position: absolute;
     top: 0;
