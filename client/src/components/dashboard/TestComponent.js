@@ -1,10 +1,9 @@
 import React from 'react';
 
-const TestComponent = (title) => {
+const TestComponent = (props) => {
     return (
         <div>
-            <p>meh</p>
-            {/* <p style={{color: "white"}}>{{title}}</p> */}
+            <h1>{props.title}</h1>
         </div>
     );
 };

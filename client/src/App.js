@@ -17,9 +17,9 @@ const App = () => {
                 <Route path="/dashboard" component={() => 
                     <Dashboard>
                         <TestComponent title="Welcome" path="/dashboard/welcome"/>
-                        <TestComponent title="Hi"/>
-                        <TestComponent title="Hello"/>
-                        <TestComponent title="Sup"/>
+                        <TestComponent title="Hi" path="/dashboard/hi"/>
+                        <TestComponent title="Hello" path="/dashboard/hello"/>
+                        <TestComponent title="Sup" path="/dashboard/sup"/>
                     </Dashboard>
                 }/>
             </Router>            
