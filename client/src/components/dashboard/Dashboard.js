@@ -1,9 +1,31 @@
-import React from 'react';
+import { React, useState } from 'react';
+import "./Dashboard.css"
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+
+    const [navWidth, setNavWidth] = useState(0)
+
+    function openNav() {
+        setNavWidth(250)
+      }
+      
+      function closeNav() {
+        setNavWidth(0)
+      }
+
     return (
         <div>
-            <h1>DASHBOARD</h1>
+            <div id="mySidenav" class="sidenav" style={{ width: navWidth}}>
+                {
+                    props.children.map((value, index) => {
+                        return (
+                            <a href={value.props.path} key={index}>{value.props.title}</a>
+                        )
+                    })
+                }
+                <a href="javascript:void(0)" class="closebtn" onClick={closeNav}>&times;</a>
+            </div>
+            <span style={{"fontSize":"30px","cursor":"pointer"}} onClick={openNav}>&#9776;</span>
         </div>
     );
 };
