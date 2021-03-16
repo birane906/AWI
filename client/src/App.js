@@ -4,6 +4,7 @@ import './App.css';
 
 import Login from "./components/login/Login"
 import Dashboard from "./components/dashboard/Dashboard"
+import TestComponent from "./components/dashboard/TestComponent"
 
 const App = () => {
     return (
@@ -13,7 +14,14 @@ const App = () => {
                     <Redirect to="/login"/>
                 </Route>
                 <Route path="/login" component={Login}/>
-                <Route path="/dashboard" component={Dashboard}/>
+                <Route path="/dashboard" component={() => 
+                    <Dashboard>
+                        <TestComponent title="Welcome" path="/dashboard/welcome"/>
+                        <TestComponent title="Hi"/>
+                        <TestComponent title="Hello"/>
+                        <TestComponent title="Sup"/>
+                    </Dashboard>
+                }/>
             </Router>            
         </div>
     );
