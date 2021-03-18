@@ -4,6 +4,7 @@ import './App.css';
 
 import Login from "./components/login/Login"
 import Dashboard from "./components/dashboard/Dashboard"
+import Festivals from "./components/festival/Festivals"
 
 const App = () => {
     return (
@@ -13,7 +14,11 @@ const App = () => {
                     <Redirect to="/login"/>
                 </Route>
                 <Route path="/login" component={Login}/>
-                <Route path="/dashboard" component={Dashboard}/>
+                <Route path="/dashboard" component={() => 
+                    <Dashboard>
+                        <Festivals title="festivals" path="/dashboard/festivals"/>
+                    </Dashboard>
+                }/>
             </Router>            
         </div>
     );
