@@ -7,6 +7,9 @@ function Festivals(props) {
         <div>
             <Festival/>
             <Festival/>
+            <Festival/>
+            <Festival/>
+            <Festival/>
         </div>
     )
 }
