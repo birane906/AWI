@@ -1,9 +1,7 @@
 import { React, useState } from 'react';
 import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
-import "./festival"
 import "./Dashboard.css"
-import festival from './festival';
 
 const Dashboard = (props) => {
 
