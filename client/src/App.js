@@ -5,6 +5,7 @@ import './App.css';
 import Login from "./components/login/Login"
 import Dashboard from "./components/dashboard/Dashboard"
 import TestComponent from "./components/dashboard/TestComponent"
+import Festivals from "./components/festival/Festivals"
 
 const App = () => {
     return (
@@ -20,6 +21,7 @@ const App = () => {
                         <TestComponent title="Hi" path="/dashboard/hi"/>
                         <TestComponent title="Hello" path="/dashboard/hello"/>
                         <TestComponent title="Sup" path="/dashboard/sup"/>
+                        <Festivals title="festivals" path="/dashboard/festivals"/>
                     </Dashboard>
                 }/>
             </Router>            

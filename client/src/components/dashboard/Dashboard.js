@@ -16,6 +16,7 @@ const Dashboard = (props) => {
       }
 
     return (
+        
         <div>
             <div id="mySidenav" className="sidenav" style={{ width: navWidth}}>
                 {
@@ -38,6 +39,7 @@ const Dashboard = (props) => {
                 }
             </div>
         </div>
+        
     );
 };
 
