@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Festival from './Festival'
 
 
-function Festivals(props) {
+function Festivals() {
+  
     return (
         <div>
         <div>
@@ -10,12 +11,10 @@ function Festivals(props) {
             <br/><br/>
             <Festival/>
             <br/><br/>
-            <Festival/>
-            <br/><br/>
-            <Festival/>
             
         </div>
-        <button> DISPLAY A FORM TO ADD FESTI</button>
+        <button > DISPLAY A FORM TO ADD FESTI</button>
+        
         </div>
     )
 }
