@@ -1,14 +1,9 @@
 import React from 'react'
 
-function SearchBox(props) {
+function SearchBox() {
     return (
         <div>
-            <input 
-            type="search"
-            className="search"
-            placeholder={props.placeholder}
-            onChange={props.handleChange}
-            />
+            <input type="search" />
         </div>
     )
 }
