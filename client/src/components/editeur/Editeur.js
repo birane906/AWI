@@ -1,8 +1,9 @@
 import React from 'react'
+import './Editeur.css';
 
 function Editeur() {
     return (
-        <div>
+        <div className="edge">
           nom de l'éditeur  
           <button> X</button>
         </div>
