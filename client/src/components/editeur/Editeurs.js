@@ -1,6 +1,7 @@
 import React from 'react'
+import SearchBox from '../searchBox/SearchBox';
 import Editeur from './Editeur'
-import './Editeurs.css';
+import './Editeurs.css'
 
 
 function Editeurs() {
@@ -10,7 +11,7 @@ function Editeurs() {
             <h2>Les éditeurs et exposants</h2>
             <br/>
             
-            <input type="search" /><button>Chercher</button>
+            <SearchBox/>
             <Editeur/>
             <Editeur/>
             <Editeur/>

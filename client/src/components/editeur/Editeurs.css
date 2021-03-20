@@ -2,3 +2,7 @@ h2{
     color: teal;
     font-weight: bold;
 }
+
+button{
+    border-radius: 50%;
+}
