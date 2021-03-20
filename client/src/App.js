@@ -7,6 +7,7 @@ import Dashboard from "./components/dashboard/Dashboard"
 import TestComponent from "./components/dashboard/TestComponent"
 import Festivals from "./components/festival/Festivals"
 import Jeux from "./components/jeu/Jeux"
+import SearchBox from "./components/searchBox/SearchBox"
 
 const App = () => {
     return (

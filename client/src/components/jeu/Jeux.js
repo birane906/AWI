@@ -1,10 +1,11 @@
 import React from 'react'
+import SearchBox from '../searchBox/SearchBox'
 import Jeu from './Jeu'
 
 function Jeux(props) {
     return (
         <div>
-            <input type="text" placeholder="Rechercher un jeu"/>
+            <SearchBox placeholder="Rechercher un jeu " handleChange={(e) => console.log(e)}/>
             <Jeu/>
             <Jeu/>
         </div>
