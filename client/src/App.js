@@ -7,6 +7,7 @@ import Dashboard from "./components/dashboard/Dashboard"
 import TestComponent from "./components/dashboard/TestComponent"
 import Festivals from "./components/festival/Festivals"
 import Jeux from "./components/jeu/Jeux"
+import JeuxReserves from "./components/JeuReserve/JeuxReserves"
 
 const App = () => {
     return (
@@ -20,6 +21,7 @@ const App = () => {
                     <Dashboard>
                         <Festivals title="festivals" path="/dashboard/festivals"/>
                         <Jeux title="Jeux" path="/dashboard/jeux"/>
+                        <JeuxReserves title="JeuxReserves" path="/dashboard/jeuReserve"/>
                         <TestComponent title="Welcome" path="/dashboard/welcome"/>
                         <TestComponent title="Hi" path="/dashboard/hi"/>
                         <TestComponent title="Hello" path="/dashboard/hello"/>
