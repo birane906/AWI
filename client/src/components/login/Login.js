@@ -23,16 +23,16 @@ const Login = () => {
             Mot de passe : ${password}
             `);
 
-            axios.post('http://localhost:8080/api/login', {
+            axios.post('/api/login', {
                 login: login,
                 password: password
             })
                 .then(response => {
-                    history.push('/dashboard')
+                    history.push('/dashboard')  
                 })
                 .catch(error => {
                     setError(true)
-                    if (error.response.status == 401) {
+                    if (error.response.status === 401) {
                         console.log(error);
                     } else { 
                         console.log("Unknown error");
@@ -71,13 +71,13 @@ const Login = () => {
                 <form onSubmit={handleSubmit} noValidate>
                     <div className="login">
                         <label htmlFor="login">Login</label>
-                        <input type="login" className={login != null ? ((login.length == 0 || error) ? "error" : null) : null} placeholder="Login" name="login" noValidate onChange={handleChange} />
+                        <input type="login" className={login != null ? ((login.length === 0 || error) ? "error" : null) : null} placeholder="Login" name="login" noValidate onChange={handleChange} />
                     </div>
 
 
                     <div className="password">
                         <label htmlFor="password"> Mot de passe</label>
-                        <input type="password" className={password != null ? ((password.length == 0 || error) ? "error" : null) : null} placeholder="Mot de passe" name="password" noValidate onChange={handleChange} />
+                        <input type="password" className={password != null ? ((password.length === 0 || error) ? "error" : null) : null} placeholder="Mot de passe" name="password" noValidate onChange={handleChange} />
                     </div>
 
 
