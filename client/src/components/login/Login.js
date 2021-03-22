@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router"
 import './Login.css';
+import axios from "axios"
 
 const Login = () => {
 
     const [ login, setLogin ] = useState(null)
     const [ password, setPassword ] = useState(null)
+    const [ error , setError ] = useState(false)
     const history = useHistory()
 
     const formValid = () => {
@@ -17,12 +19,25 @@ const Login = () => {
 
         if (formValid()) {
             console.log(`-- Connexion -- 
-          Login : ${login}
-          Mot de passe : ${password}
-          `);
+            Login : ${login}
+            Mot de passe : ${password}
+            `);
 
-            fetch("http://localhost:8080/api/ping")
-                .then( _ => history.push("/dashboard"))
+            axios.post('http://localhost:8080/api/login', {
+                login: login,
+                password: password
+            })
+                .then(response => {
+                    history.push('/dashboard')
+                })
+                .catch(error => {
+                    setError(true)
+                    if (error.response.status == 401) {
+                        console.log(error);
+                    } else { 
+                        console.log("Unknown error");
+                    }
+                })
 
         } else {
             console.error('Formulaire invalide - Message derreur')
@@ -32,6 +47,7 @@ const Login = () => {
     const handleChange = e => {
         e.preventDefault();
         const { name, value } = e.target;
+        setError(false)
 
         switch (name) {
             case 'login':
@@ -55,13 +71,13 @@ const Login = () => {
                 <form onSubmit={handleSubmit} noValidate>
                     <div className="login">
                         <label htmlFor="login">Login</label>
-                        <input type="login" className={login != null ? (login.length == 0 ? "error" : null) : null} placeholder="Login" name="login" noValidate onChange={handleChange} />
+                        <input type="login" className={login != null ? ((login.length == 0 || error) ? "error" : null) : null} placeholder="Login" name="login" noValidate onChange={handleChange} />
                     </div>
 
 
                     <div className="password">
                         <label htmlFor="password"> Mot de passe</label>
-                        <input type="password" className={password != null ? (password.length == 0 ? "error" : null) : null} placeholder="Mot de passe" name="password" noValidate onChange={handleChange} />
+                        <input type="password" className={password != null ? ((password.length == 0 || error) ? "error" : null) : null} placeholder="Mot de passe" name="password" noValidate onChange={handleChange} />
                     </div>
 
 
