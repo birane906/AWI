@@ -1,13 +1,12 @@
 import React from 'react'
 import './Editeur.css';
 
-function Editeur() {
+const Editeur = (props) => {
     return (
-        <div className="edge">
-          nom de l'éditeur  
-          <button> X</button>
+        <div>
+            <h1>{props.nom_exposant}</h1>
         </div>
-    )
-}
+    );
+};
 
 export default Editeur
