@@ -21,16 +21,25 @@ const Editeurs = (props) => {
         getExposants();
     },[]);
     console.log(exposants)
+
     return(
         <div>
-            {
-                exposants.map(exposant => (
-                    <div key={exposant.id_exposant}>
-                        <h2>{exposant.nom_exposant}</h2>
-                    </div>
+            <h2> Suivi d'exposant </h2>
+            <ul>
+                {
+                    exposants.map(exposant => (
+                        <li key={exposant.id_suivi}>
+                            <br/>
+                            <Editeur nom_exposant={exposant.nom_exposant} premier_contact={exposant.premier_contact}
+                                     deuxieme_contact={exposant.deuxieme_contact} troisieme_contact={exposant.troisieme_contact}
+                                     est_present={exposant.est_present} cr_envoye={exposant.cr_envoye}
+                                     commentaire={exposant.commentaire}
+                            />
+                        </li>
 
-                ))
-            }
+                    ))
+                }
+            </ul>
         </div>
     );
 }
