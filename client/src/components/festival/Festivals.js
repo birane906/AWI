@@ -13,9 +13,8 @@ function Festivals() {
             <br/><br/>
             
         </div>
-        <button > DISPLAY A FORM TO ADD FESTI</button>
-        
-        </div>
+        <button > DISPLAY A FORM TO ADD FESTI</button>   
+        </div>  
     )
 }
 
