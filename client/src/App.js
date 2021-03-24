@@ -8,6 +8,7 @@ import TestComponent from "./components/dashboard/TestComponent"
 import Festivals from "./components/festival/Festivals"
 import Jeux from "./components/jeu/Jeux"
 import Suivis from "./components/suivi/Suivis"
+import Exposants from "./components/exposant/Exposant"
 
 const App = () => {
     return (
@@ -22,7 +23,7 @@ const App = () => {
                         <Festivals title="festivals" path="/dashboard/festivals"/>
                         <Jeux title="Jeux" path="/dashboard/jeux"/>
                         <Suivis title="Suivis" path="/dashboard/suivis"/>
-                        
+                        <Exposants title="Exposant" path="/dashboard/exposant"/>
                     </Dashboard>
                 }/>
             </Router>            

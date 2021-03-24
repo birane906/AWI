@@ -3,7 +3,7 @@ import SearchBox from '../searchBox/SearchBox';
 import Suivi from './Suivi'
 import './Suivi.css'
 import Table from 'react-bootstrap/Table'
-//import Table from '@material-ui/core/Table';
+import Button from 'react-bootstrap/Button'
 
 const Suivis = (props) => {
     const [exposants,setExposants]=useState([]);
@@ -38,6 +38,8 @@ const Suivis = (props) => {
                        <th>Est present</th>
                        <th>CR envoyé</th>
                        <th>Commentaire</th>
+                       <th>Modifier</th>
+                       <th>Supprimer</th>
                    </tr>
                    </thead>
                    <tbody>
@@ -52,6 +54,8 @@ const Suivis = (props) => {
                                <td> {exposant.est_present.toString()} </td>
                                <td> {exposant.cr_envoye.toString()} </td>
                                <td> {exposant.commentaire} </td>
+                               <td> <Button variant="warning">Modifier</Button> </td>
+                               <td> <Button variant="info">Supprimer</Button> </td>
                            </tr>
 
 
