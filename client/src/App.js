@@ -24,8 +24,8 @@ const App = () => {
                 <Route path="/login" component={Login} />
                 <Route path="/dashboard" component={() =>
                     <Dashboard>
-                        <Festivals title="festivals" path="/dashboard/festivals" />
-                        <Exposants title="Exposant" path="/dashboard/exposant"/>
+                        <Festivals title="Festivals" path="/dashboard/festivals" />
+                        <Exposants title="Exposants" path="/dashboard/exposant"/>
                         <Jeux title="Jeux" path="/dashboard/jeux"/>
                         <Suivis title="Suivis" path="/dashboard/suivis"/>
                     </Dashboard>
