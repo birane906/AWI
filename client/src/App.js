@@ -8,6 +8,8 @@ import Dashboard from "./components/dashboard/Dashboard"
 import TestComponent from "./components/dashboard/TestComponent"
 import Festivals from "./components/festival/Festivals"
 import Jeux from "./components/jeu/Jeux"
+import Suivis from "./components/suivi/Suivis"
+import Exposants from "./components/exposant/Exposant"
 import FestivalDetails from "./components/festival/FestivalDetails";
 
 const history = createBrowserHistory();
@@ -23,11 +25,9 @@ const App = () => {
                 <Route path="/dashboard" component={() =>
                     <Dashboard>
                         <Festivals title="festivals" path="/dashboard/festivals" />
-                        <Jeux title="Jeux" path="/dashboard/jeux" />
-                        <TestComponent title="Welcome" path="/dashboard/welcome" />
-                        <TestComponent title="Hi" path="/dashboard/hi" />
-                        <TestComponent title="Hello" path="/dashboard/hello" />
-                        <TestComponent title="Sup" path="/dashboard/sup" />
+                        <Exposants title="Exposant" path="/dashboard/exposant"/>
+                        <Jeux title="Jeux" path="/dashboard/jeux"/>
+                        <Suivis title="Suivis" path="/dashboard/suivis"/>
                     </Dashboard>
                 } />
                 <Route path="/dashboard/festivals/:pathFestival" children={<FestivalDetails />} />

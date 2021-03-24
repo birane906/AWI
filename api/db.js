@@ -4,10 +4,10 @@ const { Client } = require('pg')
 // NE JAMAIS PUSH CE FICHIER
 const db = new Client({
     user: "postgres",
-    password: "password",
+    password: "xjj13768316112",
     host: "localhost",
     port: "5432",
-    database: "AWI",
+    database: "FDJ",
 })
 
 db.connect()
