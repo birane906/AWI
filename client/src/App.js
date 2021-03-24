@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { createBrowserHistory } from "history";
 import './App.css';
 
 import Login from "./components/login/Login"
@@ -9,24 +10,28 @@ import Festivals from "./components/festival/Festivals"
 import Jeux from "./components/jeu/Jeux"
 import Suivis from "./components/suivi/Suivis"
 import Exposants from "./components/exposant/Exposant"
+import FestivalDetails from "./components/festival/FestivalDetails";
+
+const history = createBrowserHistory();
 
 const App = () => {
     return (
         <div>
-            <Router>
+            <Router history={history}>
                 <Route exact path="/">
-                    <Redirect to="/login"/>
+                    <Redirect to="/login" />
                 </Route>
-                <Route path="/login" component={Login}/>
-                <Route path="/dashboard" component={() => 
+                <Route path="/login" component={Login} />
+                <Route path="/dashboard" component={() =>
                     <Dashboard>
-                        <Festivals title="festivals" path="/dashboard/festivals"/>
+                        <Festivals title="festivals" path="/dashboard/festivals" />
+                        <Exposants title="Exposant" path="/dashboard/exposant"/>
                         <Jeux title="Jeux" path="/dashboard/jeux"/>
                         <Suivis title="Suivis" path="/dashboard/suivis"/>
-                        <Exposants title="Exposant" path="/dashboard/exposant"/>
                     </Dashboard>
-                }/>
-            </Router>            
+                } />
+                <Route path="/dashboard/festivals/:pathFestival" children={<FestivalDetails />} />
+            </Router>
         </div>
     );
 };
