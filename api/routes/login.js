@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
     const login = req.body.login
     const password = req.body.password
     db.query(`
-        SELECT "idUser" FROM public."User"
+        SELECT "idUser" FROM "user"
         WHERE 
                 '${login}'="nameUser"
             AND crypt('${password}',"passwordUser")="passwordUser"`)
