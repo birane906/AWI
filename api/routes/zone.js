@@ -20,7 +20,7 @@ zoneRouter.post('/',function(req,res){
 
 zoneRouter.get('/',function(req,res){
     try{
-        const allzone =  pool.query("SELECT  name_zone, name_jeu, nom_editeur, nb_joueurs_min,  nb_joueurs_max, agemin, duree, libelle_type, place_plan, recu, anim FROM jeux INNER JOIN jeu_reserve on jeux.id_jeu = jeu_reserve.id_jeu INNER JOIN reservation on jeu_reserve.id_reservation = reservation.id_reservation INNER JOIN festival on reservation.id_festival = festival.id_festival INNER JOIN espace on festival.id_festival = espace.id_festival INNER JOIN zone on espace.id_espace = zone.id_espace NATURAL JOIN type NATURAL JOIN editeur").then(data=>{
+        const allzone =  pool.query("select * from zone join espace on zone.id_espace = espace.id_espace join festival on espace.id_festival=festival.id_festival join jeu_reserve on jeu_reserve.id_zone=zone.id_zone").then(data=>{
             console.log(data)
             res.json(data.rows);
         });
@@ -34,7 +34,7 @@ zoneRouter.get('/',function(req,res){
 zoneRouter.get('/:id',function(req,res){
     try{
         const {id } =req.params;
-        const zone = pool.query("SELECT name_jeu, nom_editeur, nb_joueurs_min,  nb_joueurs_max, agemin, duree, libelle_type, place_plan, recu, anim FROM jeux INNER JOIN jeu_reserve on jeux.id_jeu = jeu_reserve.id_jeu INNER JOIN reservation on jeu_reserve.id_reservation = reservation.id_reservation INNER JOIN festival on reservation.id_festival = festival.id_festival INNER JOIN espace on festival.id_festival = espace.id_festival INNER JOIN zone on espace.id_espace = zone.id_espace NATURAL JOIN type NATURAL JOIN editeur WHERE id_zone=$1",[id]).then(data=>{
+        const zone = pool.query("select * from zone join espace on zone.id_espace = espace.id_espace join festival on espace.id_festival=festival.id_festival join jeu_reserve on jeu_reserve.id_zone=zone.id_zone WHERE zone.id_zone=$1",[id]).then(data=>{
             res.json(data.rows[0])
         })
     }catch(err){
