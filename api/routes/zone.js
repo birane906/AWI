@@ -9,21 +9,19 @@ zoneRouter.use(express.json());
 // creat exposant
 zoneRouter.post('/',function(req,res){
     try{
-        //console.log(req.body)
         const { nom_zone } = req.body;
         const newZone = pool.query("INSERT INTO zone(nom_zone) VALUES($1) RETURNING *",[nom_zone]);
-        //const newExposant = "working"
         res.json(newZone);
     }catch(err){
         console.error(err.message);
     }
 });
 
-// get all exposant
+
 zoneRouter.get('/',function(req,res){
     try{
         const allzone =  pool.query("SELECT * FROM zone").then(data=>{
-            //console.log(data)
+            console.log(data)
             res.json(data.rows);
         });
     }catch(err){
@@ -31,11 +29,21 @@ zoneRouter.get('/',function(req,res){
     }
 });
 
-//get an exposant
+zoneRouter.get('/',function(req,res){
+    try{
+        const jeuxReserves =  pool.query("SELECT * FROM jeux INNER JOIN jeu_reserve on jeux.id_jeu = jeu_reserve.id_jeu INNER JOIN reservation on jeu_reserve.id_reservation = reservation.id_reservation INNER JOIN festival on reservation.id_festival = festival.id_festival INNER JOIN espace on festival.id_espace = espace.id_espace INNER JOIN zone on espace.id_espace = zone.id_espace").then(data=>{
+            console.log(data)
+            res.json(data.rows);
+        });
+    }catch(err){
+        console.error(err.message);
+    }
+});
+
 zoneRouter.get('/:id',function(req,res){
     try{
         const {id } =req.params;
-        const exposant = pool.query("SELECT * FROM zone WHERE id_zone=$1",[id]).then(data=>{
+        const zone = pool.query("SELECT * FROM zone WHERE id_zone=$1",[id]).then(data=>{
             res.json(data.rows[0])
         })
     }catch(err){
