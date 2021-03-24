@@ -20,7 +20,8 @@ router.get('/:festivalName', (req, res) => {
 })
 router.get('/', (req, res) => {
     db.query(`
-        SELECT * from "festival"
+        SELECT festival.id_festival, "year", "name", "prix_m2", "prix_table", "nb_table" FROM festival
+        LEFT JOIN espace ON festival.id_festival=espace.id_festival
     `)
         .then(rep => {
             res.status(200).json(rep.rows)
