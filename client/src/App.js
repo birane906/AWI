@@ -7,7 +7,7 @@ import Dashboard from "./components/dashboard/Dashboard"
 import TestComponent from "./components/dashboard/TestComponent"
 import Festivals from "./components/festival/Festivals"
 import Jeux from "./components/jeu/Jeux"
-import Editeurs from "./components/editeur/Editeurs"
+import Suivis from "./components/suivi/Suivis"
 
 const App = () => {
     return (
@@ -21,7 +21,7 @@ const App = () => {
                     <Dashboard>
                         <Festivals title="festivals" path="/dashboard/festivals"/>
                         <Jeux title="Jeux" path="/dashboard/jeux"/>
-                        <Editeurs title="Editeurs" path="/dashboard/editeurs"/>
+                        <Suivis title="Suivis" path="/dashboard/suivis"/>
                         
                     </Dashboard>
                 }/>

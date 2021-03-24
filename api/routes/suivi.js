@@ -41,7 +41,7 @@ editeurRouter.get('/',function(req,res){
     }
 });
 
-//get an suivi
+//get a suivi
 editeurRouter.get('/:id',function(req,res){
     try{
         const {id} =req.params;
@@ -53,4 +53,20 @@ editeurRouter.get('/:id',function(req,res){
     }
 
 })
+
+//update premier contact in a suivi
+editeurRouter.put("/:id",function(req,res){
+    try{
+        const{ id } = req.params;
+        const { premier_contact } = req.body;
+        const updateSuivi = pool.query(
+            "UPDATE suivi_contact SET premier_contact = $1 WHERE id_suivi = $2",
+            [premier_contact,id]
+        );
+        res.json("suivi updated")
+    }catch(err){
+        console.error(err.message)
+    }
+});
+
 module.exports = editeurRouter;

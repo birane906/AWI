@@ -1,0 +1,15 @@
+h2{
+    color: teal;
+    font-weight: bold;
+    text-align: center;
+}
+
+Table{
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+button{
+    border-radius: 50%;
+}
