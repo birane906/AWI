@@ -8,6 +8,7 @@ import Dashboard from "./components/dashboard/Dashboard"
 import TestComponent from "./components/dashboard/TestComponent"
 import Festivals from "./components/festival/Festivals"
 import Jeux from "./components/jeu/Jeux"
+import Zones from "./components/zone/Zones"
 import Suivis from "./components/suivi/Suivis"
 import Exposants from "./components/exposant/Exposant"
 import FestivalDetails from "./components/festival/FestivalDetails";
@@ -27,6 +28,7 @@ const App = () => {
                         <Festivals title="Festivals" path="/dashboard/festivals" />
                         <Exposants title="Exposants" path="/dashboard/exposant"/>
                         <Jeux title="Jeux" path="/dashboard/jeux"/>
+                        <Zones title="Zones" path="/dashboard/zones"/>
                         <Suivis title="Suivis" path="/dashboard/suivis"/>
                     </Dashboard>
                 } />
