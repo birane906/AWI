@@ -4,9 +4,9 @@ const { Client } = require('pg')
 // NE JAMAIS PUSH CE FICHIER
 const db = new Client({
     user: "postgres",
-    password: "xjj13768316112",
+    password: "xiang1997",
     host: "localhost",
-    port: "5432",
+    port: "5433",
     database: "FDJ",
 })
 
