@@ -31,7 +31,7 @@ zoneRouter.get('/',function(req,res){
 
 zoneRouter.get('/',function(req,res){
     try{
-        const jeuxReserves =  pool.query("SELECT * FROM jeux INNER JOIN jeu_reserve on jeux.id_jeu = jeu_reserve.id_jeu INNER JOIN reservation on jeu_reserve.id_reservation = reservation.id_reservation INNER JOIN festival on reservation.id_festival = festival.id_festival INNER JOIN espace on festival.id_festival = espace.id_festival INNER JOIN zone on espace.id_espace = zone.id_espace").then(data=>{
+        const jeuxReserves =  pool.query("SELECT  name_jeu, nom_editeur, nb_joueurs_min,  nb_joueurs_max, agemin, duree, libelle_type, place_plan, recu, anim FROM jeux INNER JOIN jeu_reserve on jeux.id_jeu = jeu_reserve.id_jeu INNER JOIN reservation on jeu_reserve.id_reservation = reservation.id_reservation INNER JOIN festival on reservation.id_festival = festival.id_festival INNER JOIN espace on festival.id_festival = espace.id_festival INNER JOIN zone on espace.id_espace = zone.id_espace NATURAL JOIN type NATURAL JOIN editeur").then(data=>{
             console.log(data)
             res.json(data.rows);
         });
