@@ -1,9 +1,12 @@
-import { React, useState } from 'react';
-import { Route } from 'react-router';
+import { React, useState, useEffect } from 'react';
+import { Route, useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import loginChecker from '../../middleware/loginChecker';
 import "./Dashboard.css"
 
 const Dashboard = (props) => {
+    const history = useHistory()
+    useEffect(() => loginChecker(history), [history])
 
     const [navWidth, setNavWidth] = useState(0)
 
@@ -11,9 +14,9 @@ const Dashboard = (props) => {
         setNavWidth(250)
       }
       
-      function closeNav() {
+    function closeNav() {
         setNavWidth(0)
-      }
+    }
 
     return (
         
