@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import Zone from './Zone'
+import Collapse from 'react-bootstrap/Collapse'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
+import './Zone.css'
 
 const Zones = (props) => {
     const [zones,setZones]=useState([]);
+    const [open, setOpen] = useState(false);
 
     const getZones = async()=>{
         try{
@@ -23,14 +25,19 @@ const Zones = (props) => {
 
     return(
         <div>
-            <h2> Listes des zones </h2>
+            
+            <h1> Listes des zones </h1>
             {
                     zones.map(zone => (
            
                     <div> 
                         <h2> {zone.name_zone} </h2>
-
-                        <Table striped bordered hover size="sm">
+                        <h4> Jeux réservés</h4>
+                        <Button  onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
+                                    v
+                                </Button>
+                        <Collapse in={open}>
+                        <Table  striped bordered hover size="sm">
                             <thead>
                                 <tr>
                                 <th>Nom du jeu</th>
@@ -75,12 +82,11 @@ const Zones = (props) => {
                             
                             </tbody>
                             </Table>
+                            </Collapse>
                             </div>
                     ))
-                
-                   
-                
-                    }
+                                 
+                }
         </div>
     );
 }
