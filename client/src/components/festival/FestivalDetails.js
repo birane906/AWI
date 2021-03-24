@@ -12,7 +12,6 @@ const FestivalDetails = (props) => {
         axios.get('/api/festivals/' + pathFestival)
             .then(res => {
                 if (res.status === 200) {
-                    console.log(res.data[0]);
                     setFestivalDetails(res.data[0])
                 } else {
                     history.push('/dashboard/festivals')

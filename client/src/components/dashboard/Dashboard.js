@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
 import "./Dashboard.css"
@@ -33,7 +33,7 @@ const Dashboard = (props) => {
                 {
                     props.children.map((value, index) => {
                         return (
-                            <Route exact path={value.props.path} component={() => {return value}} key={index}/>
+                            <DashboardComponent value={value} index={index} key={index}/>
                         )
                     })
                 }
@@ -42,5 +42,15 @@ const Dashboard = (props) => {
         
     );
 };
+
+const DashboardComponent = React.memo((props) => {
+    const value = props.value
+    const index = props.index
+    return (
+        <div>
+            <Route exact path={value.props.path} component={() => {return value}} />
+        </div>
+    );
+});
 
 export default Dashboard;
