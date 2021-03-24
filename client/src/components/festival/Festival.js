@@ -6,7 +6,7 @@ function Festival(props) {
         
           <div className="content">
            <h1> {props.name}</h1>  
-           <h2>Année *AnnéeDuFestivalBDD*</h2>  
+           <h2>Année {props.year}</h2>  
             Nombre d'emplacement Total *nbEmplTotalDuFestivalBDD*
             <br/>
             Prix Emplacement Premium *prix*  

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import Festival from './Festival'
 
@@ -6,6 +7,7 @@ import Festival from './Festival'
 function Festivals() {
   
     const [ festivals, setFestivals ] = useState([])
+    const location = useLocation()
 
     function loadFestivals() {
         axios.get('/api/festivals')
@@ -20,17 +22,21 @@ function Festivals() {
     useEffect(() => loadFestivals(), [])
 
     return (
-        <div>
-        <div>
-            {
-                festivals.map((value, index) => {
-                    return (
-                        <Festival name={value.name} key={index}/>
-                    )
-                })
-            }
-        </div>
-        <button > DISPLAY A FORM TO ADD FESTI</button>   
+        <div className="m-4">
+            <div className="row">
+                {
+                    festivals.map((value, index) => {
+                        return (
+                            <div className="col-md-4" key={index}>
+                                <Link to={location.pathname + "/" + value.name} key={index}>
+                                    <Festival name={value.name} year={value.year.slice(0,4)} key={index}/>
+                                </Link>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+            <button > DISPLAY A FORM TO ADD FESTI</button>   
         </div>  
     )
 }

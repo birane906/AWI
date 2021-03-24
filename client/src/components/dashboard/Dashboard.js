@@ -33,7 +33,7 @@ const Dashboard = (props) => {
                 {
                     props.children.map((value, index) => {
                         return (
-                            <Route path={value.props.path} component={() => {return value}} key={index}/>
+                            <Route exact path={value.props.path} component={() => {return value}} key={index}/>
                         )
                     })
                 }
