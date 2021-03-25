@@ -4,10 +4,10 @@ const { Pool } = require('pg')
 // NE JAMAIS PUSH CE FICHIER
 const db = new Pool({
     user: "postgres",
-    password: "xjj13768316112",
+    password: "admin",
     host: "localhost",
-    port: "5432",
-    database: "FDJ",
+    port: "15432",
+    database: "AWI"
 })
 
 db.connect()

@@ -6,6 +6,7 @@ import './Zone.css'
 
 const Zones = (props) => {
     const [zones,setZones]=useState([]);
+    const [jeuReserve,setJeuReserve]=useState([]);
     const [open, setOpen] = useState(false);
 
     const getZones = async()=>{
@@ -18,10 +19,27 @@ const Zones = (props) => {
             console.error(err.message)
         }
     }
+
+    const getJeuReserve = async()=>{
+        try{
+            const response = await fetch("http://localhost:8080/api/listJeu");
+            const jsonData = await response.json();
+            setJeuReserve(jsonData);
+
+        }catch(err){
+            console.error(err.message)
+        }
+    }
     useEffect(()=>{
         getZones();
     },[]);
     console.log(zones)
+
+    useEffect(()=>{
+        getJeuReserve();
+    },[]);
+    console.log(jeuReserve)
+
 
     return(
         <div>
@@ -29,9 +47,11 @@ const Zones = (props) => {
             <h1> Listes des zones </h1>
             {
                     zones.map(zone => (
-           
+                        jeuReserve.map(j => ( 
                     <div> 
-                        <h2> {zone.name_zone} </h2>
+                        
+                        <h2> {zone.name_zone}</h2>
+                        
                         <h4> Jeux réservés</h4>
                         <Button  onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
                                     v
@@ -55,25 +75,25 @@ const Zones = (props) => {
                             <tbody>
             
                             <tr key={zone.name_zone}>
-                            <td> {zone.name_jeu}</td>
-                            <td> {zone.nom_editeur}</td>
-                            <td> {zone.nb_joueurs_min} - {zone.nb_joueurs_max}</td>
+                            <td> {j.name_jeu}</td>
+                            <td> {j.nom_editeur}</td>
+                            <td> {j.nb_joueurs_min} - {j.nb_joueurs_max}</td>
                         
-                            <td> {zone.agemin}</td>
-                            <td> {zone.duree}</td>
-                            <td> {zone.libelle_type}</td>
+                            <td> {j.agemin}</td>
+                            <td> {j.duree}</td>
+                            <td> {j.libelle_type}</td>
                             {
-                            zone.place_plan
+                            j.place_plan
                                 ? <td> <input type="checkbox" checked/></td>
                                 : <td> <input type="checkbox" /></td> 
                             }
                             {
-                            zone.recu
+                            j.recu
                                 ? <td> <input type="checkbox" checked/></td>
                                 : <td> <input type="checkbox" /></td> 
                             }
                             {
-                            zone.anim
+                            j.anim
                                 ? <td> <input type="checkbox" checked/></td>
                                 : <td> <input type="checkbox" /></td> 
                             }         
@@ -83,9 +103,10 @@ const Zones = (props) => {
                             </tbody>
                             </Table>
                             </Collapse>
-                            </div>
+                            
+                    </div>
                     ))
-                                 
+                    ))           
                 }
         </div>
     );
