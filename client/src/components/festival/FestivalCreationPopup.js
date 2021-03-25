@@ -41,9 +41,9 @@ const FestivalCreationPopup = (props) => {
                 newValue.name = value
                 break;
             
-            case 'nb_tables':
+            case 'nb_table':
                 if (e.target.value === '' || re.test(e.target.value)) {
-                    newValue.nb_tables = value
+                    newValue.nb_table = value
                 }
                 break;
             
@@ -71,7 +71,7 @@ const FestivalCreationPopup = (props) => {
     const addEspace = () => {
         setEspaces([...espaces, {
             name: "",
-            nb_tables: "",
+            nb_table: "",
             prix_table: "",
             prix_m2: "",
         }])
@@ -92,6 +92,10 @@ const FestivalCreationPopup = (props) => {
             year: year,
             espaces: espaces,
         })
+            .then(response => {
+                props.reloadFestivals()
+                props.closePopup()
+            })
     }
 
     return (
@@ -137,7 +141,7 @@ const FestivalCreationPopup = (props) => {
                                                         <Form.Control name="name" value={espace.name} placeholder="Nom espace" onChange={(e) => handleEspaceChange(e, key)}/>
                                                     </td>
                                                     <td>
-                                                        <Form.Control name="nb_tables" value={espace.nb_tables} placeholder="0" onChange={(e) => handleEspaceChange(e, key)}/>
+                                                        <Form.Control name="nb_table" value={espace.nb_table} placeholder="0" onChange={(e) => handleEspaceChange(e, key)}/>
                                                     </td>
                                                     <td>
                                                         <Form.Control name="prix_table" value={espace.prix_table} placeholder="0" onChange={(e) => handleEspaceChange(e, key)}/>

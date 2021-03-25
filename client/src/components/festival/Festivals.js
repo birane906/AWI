@@ -70,7 +70,7 @@ function Festivals() {
             </div>
             <Button variant="success" onClick={() => setShowPopup(true)}>Créer un nouveau festival</Button>  
             {
-                showPopup ? <FestivalCreationPopup closePopup={() => setShowPopup(false)}/> : null
+                showPopup ? <FestivalCreationPopup closePopup={() => setShowPopup(false)} reloadFestivals={loadFestivals} /> : null
             }
         </div>  
     )
