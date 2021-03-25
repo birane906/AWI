@@ -2,7 +2,6 @@ import React from 'react'
 import "./Festival.css"
 
 function Festival(props) {
-  console.log(props.specs);
   return (
     <div className="content">
       <h1> {props.name}</h1>

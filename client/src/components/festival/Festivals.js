@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 import axios from 'axios'
 import Festival from './Festival'
+import FestivalCreationPopup from './FestivalCreationPopup'
 
 
 function Festivals() {
   
     const [ festivals, setFestivals ] = useState([])
+    const [ showPopup, setShowPopup ] = useState(false)
     const location = useLocation()
 
     function loadFestivals() {
@@ -65,7 +68,10 @@ function Festivals() {
                     })
                 }
             </div>
-            <button > DISPLAY A FORM TO ADD FESTI</button>   
+            <Button variant="success" onClick={() => setShowPopup(true)}>Créer un nouveau festival</Button>  
+            {
+                showPopup ? <FestivalCreationPopup closePopup={() => setShowPopup(false)}/> : null
+            }
         </div>  
     )
 }
