@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 import loginChecker from '../../middleware/loginChecker';
 import "./Dashboard.css"
 
+import Card from 'react-bootstrap/Card'
+import CardDeck from 'react-bootstrap/Card'
+import Image from 'react-bootstrap/Image'
+import Button from 'react-bootstrap/Button'
+
 const Dashboard = (props) => {
     const history = useHistory()
     useEffect(() => loginChecker(history), [history])
@@ -13,13 +18,13 @@ const Dashboard = (props) => {
     function openNav() {
         setNavWidth(250)
       }
-      
+
     function closeNav() {
         setNavWidth(0)
     }
 
     return (
-        
+
         <div>
             <div id="mySidenav" className="sidenav" style={{ width: navWidth}}>
                 {
@@ -41,7 +46,66 @@ const Dashboard = (props) => {
                     })
                 }
             </div>
+            <div>
+                <div className="rowhead">
+                    <div className="logorow">
+                        <Image src="/logo_text.png" className="logo" />
+                    </div>
+                    <h2>Dashboard admin</h2>
+                </div>
+                <CardDeck>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>Liste d'exposant</Card.Title>
+                            <Card.Text>
+                                Vous trouvez ici liste d'exposant de chaque années
+                            </Card.Text>
+                        </Card.Body>
+                        <Card.Footer>
+                            <Link to="/dashboard/exposant">
+                                <Button variant="primary" size="lg" block>
+                                    Voir liste d'exposant
+                                </Button>
+                            </Link>
+
+                        </Card.Footer>
+                    </Card>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>Suivi d'exposant</Card.Title>
+                            <Card.Text>
+                                Vous trouvez ici liste de suivi contact exposant
+                            </Card.Text>
+                        </Card.Body>
+                        <Card.Footer>
+                            <Link to="/dashboard/suivi">
+                                <Button variant="primary" size="lg" block>
+                                    Voir liste de suivi
+                                </Button>
+                            </Link>
+
+                        </Card.Footer>
+                    </Card>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>Liste de zone</Card.Title>
+                            <Card.Text>
+                                Vous trouvez ici liste de zone
+                            </Card.Text>
+                        </Card.Body>
+                        <Card.Footer>
+                            <Link to="/dashboard/zones">
+                                <Button variant="primary" size="lg" block>
+                                    Voir liste de zone
+                                </Button>
+                            </Link>
+
+                        </Card.Footer>
+                    </Card>
+                </CardDeck>
+            </div>
         </div>
+
         
     );
 };
