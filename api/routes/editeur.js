@@ -1,29 +1,15 @@
 var express = require('express');
-var zoneRouter = express.Router();
+var editeurRouter = express.Router();
 var pool = require("../db");
 var cors = require('cors');
 
-zoneRouter.use(cors());
-zoneRouter.use(express.json());
+editeurRouter.use(cors());
+editeurRouter.use(express.json());
 
-
-zoneRouter.get('/',function(req,res){
-    try{
-        const allediteur =  pool.query("select * from editeur ").then(data=>{
-            console.log(data)
-            res.json(data.rows);
-        });
-    }catch(err){
-        console.error(err.message);
-    }
-});
-
-
-
-zoneRouter.get('/:id',function(req,res){
+editeurRouter.get('/:id',function(req,res){
     try{
         const {id } =req.params;
-        const zone = pool.query("select * from editeur WHERE editeur.id_editeur=$1",[id]).then(data=>{
+        const editeur = pool.query("select * from jeux join editeur on jeux.id_editeur=editeur.id_editeur WHERE editeur.id_editeur=$1",[id]).then(data=>{
             res.json(data.rows)
         })
     }catch(err){
@@ -31,4 +17,20 @@ zoneRouter.get('/:id',function(req,res){
     }
 
 })
-module.exports = zoneRouter;
+
+editeurRouter.get('/',function(req,res){
+
+    var query= "select * from jeux join editeur on jeux.id_editeur=editeur.id_editeur"
+    pool.query(query)
+        .then(data=>{
+            res.json(data.rows)
+        })
+        .catch(err=>{
+            console.error(err.message)
+        })
+
+})
+
+
+
+module.exports = editeurRouter;

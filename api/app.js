@@ -7,9 +7,7 @@ var cors = require('cors');
 var session = require('express-session');
 
 var indexRouter = require('./routes/index');
-var zoneRouter = require('./routes/zone')
-var editeurRouter = require('./routes/suivi');
-var exposantRouter = require('./routes/exposant');
+
 
 var app = express();
 
@@ -37,9 +35,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', indexRouter);
-app.use('/zone', zoneRouter);
-app.use('/suivi',editeurRouter);
-app.use('/exposant',exposantRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
