@@ -27,13 +27,13 @@ jeuRouter.get('/',function(req,res){
     console.log(editeur)
     var query=""
     if(zone!=null){
-        query = "select * from jeu_reserve join jeux on jeu_reserve.id_jeu = jeux.id_jeu join zone on jeu_reserve.id_zone = zone.id_zone WHERE zone.id_zone="+zone
+        query = "select * from jeu_reserve join jeux on jeu_reserve.id_jeu = jeux.id_jeu join zone on jeu_reserve.id_zone = zone.id_zone natural join editeur natural join type WHERE zone.id_zone="+zone
     }
     else if(editeur!=null){
         query = "select * from jeu_reserve join jeux on jeu_reserve.id_jeu = jeux.id_jeu join editeur on jeux.id_editeur=editeur.id_editeur WHERE editeur.id_editeur="+editeur
     }
     else{
-        query= "select * from jeu_reserve join jeux on jeu_reserve.id_jeu = jeux.id_jeu join zone on jeu_reserve.id_zone = zone.id_zone"
+        query= "select * from jeu_reserve join jeux on jeu_reserve.id_jeu = jeux.id_jeu join zone on jeu_reserve.id_zone = zone.id_zone natural join editeur natural join type"
     }
 
     pool.query(query)
