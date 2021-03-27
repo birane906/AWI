@@ -61,7 +61,7 @@ function Festivals() {
                         return (
                             <div className="col-md-4" key={index}>
                                 <Link to={location.pathname + "/" + value.name} key={index}>
-                                    <Festival name={value.name} year={value.year.slice(0,4)} specs={value.specs} key={index}/>
+                                    <Festival name={value.name} year={value.year} specs={value.specs} key={index}/>
                                 </Link>
                             </div>
                         )
