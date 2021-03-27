@@ -12,6 +12,7 @@ import Zones from "./components/zone/Zones"
 import Suivis from "./components/suivi/Suivis"
 import Exposants from "./components/exposant/Exposant"
 import FestivalDetails from "./components/festival/FestivalDetails";
+import Reservations from "./components/reservation/Reservations";
 
 const history = createBrowserHistory();
 
@@ -26,6 +27,7 @@ const App = () => {
                 <Route path="/dashboard" component={() =>
                     <Dashboard>
                         <Festivals title="Festivals" path="/dashboard/festivals" />
+                        <Reservations title="Réservations" path="/dashboard/reservations" />
                         <Exposants title="Exposants" path="/dashboard/exposant"/>
                         <Jeux title="Jeux" path="/dashboard/jeux"/>
                         <Zones title="Zones" path="/dashboard/zones"/>

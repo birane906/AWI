@@ -1,0 +1,9 @@
+.validated {
+    background-color: rgb(57, 209, 123)
+}
+.canceled {
+    background-color: rgb(233, 99, 99)
+}
+.unknown {
+    background-color: rgb(164, 180, 196)
+}
