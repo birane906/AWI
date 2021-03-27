@@ -1,9 +1,22 @@
 .validated {
-    background-color: rgb(57, 209, 123)
+    background-color: rgb(57, 209, 123);
 }
 .canceled {
-    background-color: rgb(233, 99, 99)
+    background-color: rgb(233, 99, 99);
 }
 .unknown {
-    background-color: rgb(164, 180, 196)
+    background-color: rgb(164, 180, 196);
+}
+
+.validated:hover {
+    background-color: rgb(48, 180, 106);
+    cursor: pointer;
+}
+.canceled:hover {
+    background-color: rgb(206, 87, 87);
+    cursor: pointer;
+}
+.unknown:hover {
+    background-color: rgb(146, 160, 175);
+    cursor: pointer;
 }
