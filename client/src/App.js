@@ -12,6 +12,7 @@ import Zones from "./components/zone/Zones"
 import Suivis from "./components/suivi/Suivis"
 import Exposants from "./components/exposant/Exposant"
 import FestivalDetails from "./components/festival/FestivalDetails";
+import Homepage from "./components/home/Homepage"
 
 const history = createBrowserHistory();
 
@@ -23,8 +24,12 @@ const App = () => {
                     <Redirect to="/login" />
                 </Route>
                 <Route path="/login" component={Login} />
+                <Route exact path="/dashboard">
+                    <Redirect to="/dashboard/home" />
+                </Route>
                 <Route path="/dashboard" component={() =>
                     <Dashboard>
+                        <Homepage title="Homepage" path="/dashboard/home"/>
                         <Festivals title="Festivals" path="/dashboard/festivals" />
                         <Exposants title="Exposants" path="/dashboard/exposant"/>
                         <Jeux title="Jeux" path="/dashboard/jeux"/>
