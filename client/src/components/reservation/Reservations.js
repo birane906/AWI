@@ -48,8 +48,8 @@ const Reservations = () => {
     return (
         <div>
             <h1>Réservations</h1>
-            <Button variant={editState ? "warning" : "primary "} className="m-2" onClick={() => setEditState(!editState)}>
-                {editState ? "Enregistrer" : "Editer " + String.fromCharCode(9998)}
+            <Button variant={!editState ? "primary" : "secondary "} className="m-2" onClick={() => setEditState(!editState)}>
+                {!editState ? "Enregistrer" : "En cours... "}
             </Button>
             <div className={"m-2"}>
                 <Table striped bordered hover size="sm" responsive="md" style={{margin: 0}}>
@@ -65,7 +65,7 @@ const Reservations = () => {
                     <tbody>
                         {
                             displayedReservations.map((value, index) => {
-                                return <Reservation datas={value} editState={editState} key={index}/>
+                                return <Reservation datas={value} key={index}/>
                             })
                         }
                     </tbody>

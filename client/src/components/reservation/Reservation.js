@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
-import { Form } from "react-bootstrap"
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 import './Reservation.css'
 
 const Reservation = (props) => {
@@ -8,7 +9,7 @@ const Reservation = (props) => {
     const history = useHistory()
 
     function dateFormat(date) {
-        return date ? date.slice(0, 10) :null;
+        return date ? new Date(date.slice(0, 10)) :null;
     }
 
     const [ valReservation, setValReservation ] = useState({
@@ -37,9 +38,7 @@ const Reservation = (props) => {
             break;
     }
 
-    const handleValReservationChange = (e) => {
-        e.preventDefault();
-        const { name, value } = e.target;
+    const handleValReservationChange = (value, name) => {
         console.log(name, value);
         const newValReservation = {
             ...valReservation,
@@ -52,38 +51,21 @@ const Reservation = (props) => {
         history.push(`/dashboard/reservations/${valReservation.nom_exposant}&id_festival=${valReservation.id_festival}`)
     }
 
-    if (props.editState) {
-        return(
-            <tr className={rowCss}>
-                <td className="tdEditor">
-                    <Form.Control name="nom_exposant" value={valReservation.nom_exposant} onChange={handleValReservationChange}/>
-                </td>
-                <td className="tdEditor">
-                    <Form.Control name="date_reservation" value={valReservation.date_reservation} onChange={handleValReservationChange}/>
-                </td>
-                <td className="tdEditor">
-                    <Form.Control name="prix_prestation" value={valReservation.prix_prestation} onChange={handleValReservationChange}/>
-                </td>
-                <td className="tdEditor">
-                    <Form.Control name="date_emision_facture" value={valReservation.date_emision_facture} onChange={handleValReservationChange}/>
-                </td>
-                <td className="tdEditor">
-                    <Form.Control name="date_paiment_facture" value={valReservation.date_paiment_facture} onChange={handleValReservationChange}/>
-                </td>
-            </tr>
-        )
-    }
-    else {
-        return (
-            <tr className={rowCss} onClick={handleRowClick}>
-                <td>{valReservation.nom_exposant}</td>
-                <td>{valReservation.date_reservation}</td>
-                <td>{valReservation.prix_prestation ? `${valReservation.prix_prestation} €` : null}</td>
-                <td>{valReservation.date_emision_facture}</td>
-                <td>{valReservation.date_paiment_facture}</td>
-            </tr>
-        );
-    }
+    return(
+        <tr className={rowCss}>
+            <td style={{cursor: "pointer"}} onClick={handleRowClick}>{valReservation.nom_exposant}</td>
+            <td className="tdEditor">
+                <DatePicker selected={valReservation.date_reservation} onChange={date => handleValReservationChange(date, "date_reservation")} />
+            </td>
+            <td>{valReservation.prix_prestation ? `${valReservation.prix_prestation} €` : null}</td>
+            <td className="tdEditor">
+                <DatePicker selected={valReservation.date_emision_facture} onChange={date => handleValReservationChange(date, "date_emision_facture")} />
+            </td>
+            <td className="tdEditor">
+                <DatePicker selected={valReservation.date_paiment_facture} onChange={date => handleValReservationChange(date, "date_paiment_facture")} />
+            </td>
+        </tr>
+    )
 };
 
 export default Reservation;
