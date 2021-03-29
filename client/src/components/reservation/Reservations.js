@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from 'react-bootstrap';
+import { Button, Table } from 'react-bootstrap';
 import axios from 'axios';
 import Reservation from './Reservation';
 
@@ -43,9 +43,14 @@ const Reservations = () => {
         setOrder(-1 * order)
     }
 
+    const [ editState, setEditState ] = useState(false)
+
     return (
         <div>
             <h1>Réservations</h1>
+            <Button variant={editState ? "warning" : "primary "} className="m-2" onClick={() => setEditState(!editState)}>
+                {editState ? "Enregistrer" : "Editer " + String.fromCharCode(9998)}
+            </Button>
             <div className={"m-2"}>
                 <Table striped bordered hover size="sm" responsive="md" style={{margin: 0}}>
                     <thead>
@@ -57,11 +62,13 @@ const Reservations = () => {
                             <th onClick={() => sortBy("date_paiment_facture", orderDate_paiment_facture, setOrderDate_paiment_facture)}>Date de paiement de la facture</th>
                         </tr>
                     </thead>
-                    {
-                        displayedReservations.map((value, index) => {
-                            return <Reservation datas={value}/>
-                        })
-                    }
+                    <tbody>
+                        {
+                            displayedReservations.map((value, index) => {
+                                return <Reservation datas={value} editState={editState} key={index}/>
+                            })
+                        }
+                    </tbody>
                 </Table>
             </div>
         </div>

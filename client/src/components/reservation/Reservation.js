@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
+import { Form } from "react-bootstrap"
 import './Reservation.css'
 
 const Reservation = (props) => {
@@ -10,17 +11,19 @@ const Reservation = (props) => {
         return date ? date.slice(0, 10) :null;
     }
 
-    var nom_exposant = props.datas.nom_exposant
-    var date_reservation = dateFormat(props.datas.date_reservation)
-    var prix_prestation = props.datas.prix_prestation
-    var date_emision_facture = dateFormat(props.datas.date_emision_facture)
-    var date_paiment_facture = dateFormat(props.datas.date_paiment_facture)
-    var libelle_etat_reservation = props.datas.libelle_etat_reservation
-    var id_festival = props.datas.id_festival
+    const [ valReservation, setValReservation ] = useState({
+        nom_exposant : props.datas.nom_exposant,
+        date_reservation : dateFormat(props.datas.date_reservation),
+        prix_prestation : props.datas.prix_prestation,
+        date_emision_facture : dateFormat(props.datas.date_emision_facture),
+        date_paiment_facture : dateFormat(props.datas.date_paiment_facture),
+        libelle_etat_reservation : props.datas.libelle_etat_reservation,
+        id_festival : props.datas.id_festival,
+    })
 
     var rowCss = null
 
-    switch (libelle_etat_reservation) {
+    switch (valReservation.libelle_etat_reservation) {
         case "Validé":
             rowCss = "validated" 
             break;
@@ -34,19 +37,53 @@ const Reservation = (props) => {
             break;
     }
 
-    const handleRowClick = () => {
-        history.push(`/dashboard/reservations/${nom_exposant}&id_festival=${id_festival}`)
+    const handleValReservationChange = (e) => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        console.log(name, value);
+        const newValReservation = {
+            ...valReservation,
+            [name]: value
+        }
+        setValReservation(newValReservation)
     }
 
-    return (
-        <tr className={rowCss} onClick={handleRowClick}>
-            <td>{nom_exposant}</td>
-            <td>{date_reservation}</td>
-            <td>{prix_prestation ? `${prix_prestation} €` : null}</td>
-            <td>{date_emision_facture}</td>
-            <td>{date_paiment_facture}</td>
-        </tr>
-    );
+    const handleRowClick = () => {
+        history.push(`/dashboard/reservations/${valReservation.nom_exposant}&id_festival=${valReservation.id_festival}`)
+    }
+
+    if (props.editState) {
+        return(
+            <tr className={rowCss}>
+                <td className="tdEditor">
+                    <Form.Control name="nom_exposant" value={valReservation.nom_exposant} onChange={handleValReservationChange}/>
+                </td>
+                <td className="tdEditor">
+                    <Form.Control name="date_reservation" value={valReservation.date_reservation} onChange={handleValReservationChange}/>
+                </td>
+                <td className="tdEditor">
+                    <Form.Control name="prix_prestation" value={valReservation.prix_prestation} onChange={handleValReservationChange}/>
+                </td>
+                <td className="tdEditor">
+                    <Form.Control name="date_emision_facture" value={valReservation.date_emision_facture} onChange={handleValReservationChange}/>
+                </td>
+                <td className="tdEditor">
+                    <Form.Control name="date_paiment_facture" value={valReservation.date_paiment_facture} onChange={handleValReservationChange}/>
+                </td>
+            </tr>
+        )
+    }
+    else {
+        return (
+            <tr className={rowCss} onClick={handleRowClick}>
+                <td>{valReservation.nom_exposant}</td>
+                <td>{valReservation.date_reservation}</td>
+                <td>{valReservation.prix_prestation ? `${valReservation.prix_prestation} €` : null}</td>
+                <td>{valReservation.date_emision_facture}</td>
+                <td>{valReservation.date_paiment_facture}</td>
+            </tr>
+        );
+    }
 };
 
 export default Reservation;

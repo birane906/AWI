@@ -1,22 +1,40 @@
 .validated {
-    background-color: rgb(57, 209, 123);
+    background-color: rgb(57, 209, 123) !important;
 }
 .canceled {
-    background-color: rgb(233, 99, 99);
+    background-color: rgb(233, 99, 99) !important;
 }
 .unknown {
-    background-color: rgb(164, 180, 196);
+    background-color: rgb(164, 180, 196) !important;
 }
 
 .validated:hover {
-    background-color: rgb(48, 180, 106);
+    background-color: rgb(48, 180, 106) !important;
     cursor: pointer;
 }
 .canceled:hover {
-    background-color: rgb(206, 87, 87);
+    background-color: rgb(206, 87, 87) !important;
     cursor: pointer;
 }
 .unknown:hover {
-    background-color: rgb(146, 160, 175);
+    background-color: rgb(146, 160, 175) !important;
     cursor: pointer;
+}
+
+th:hover {
+    background-color: rgb(230, 230, 230) !important;
+    cursor: pointer;
+}
+
+.tdEditor *, .tdEditor *:focus {
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0px !important;
+    box-shadow: inset 0 0px !important;
+    height: auto !important;
+}
+
+input {
+    background: transparent !important;
 }
