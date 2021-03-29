@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button'
 
 const Suivis = (props) => {
     const [exposants,setExposants]=useState([]);
+    const [ displayedSuivis, setDisplayedSuivis ] = useState([]);
 
     const getExposants = async()=>{
         try{
@@ -23,30 +24,53 @@ const Suivis = (props) => {
     },[]);
     console.log(exposants)
 
+    const [ orderNom_exposant, setOrderNom_esposant] = useState(1)
+    const [ orderPremier_Contact, setOrderPremier_Contact] = useState(1)
+    const [ orderDeuxieme_Contact, setOrderDeuxieme_Contact] = useState(1)
+    const [ orderTroisieme_Contact, setOrderTroisieme_Contact] = useState(1)
+    const [ orderEst_Present, setOrderEst_Present] = useState(1)
+    const [ orderEnvoye, setOrderEnvoye] = useState(1)
+
+
+    const sortBy = (key, order, setOrder) => {
+        const newDisplay = [...displayedSuivis]
+        newDisplay.sort((a, b) => {
+            if (a[key].toUpperCase() > b[key].toUpperCase()) {
+                return order
+            }
+            
+            return -order
+        })
+        setDisplayedSuivis(newDisplay)
+        setOrder(-1 * order)
+    }
+
+    const [ editState, setEditState ] = useState(false)
+
     return(
         <div>
             <h2> Suivi d'exposant </h2>
-           <div>
-               <Table striped bordered hover size="sm">
+            <Button variant={!editState ? "primary" : "secondary "} className="m-2" onClick={() => setEditState(!editState)}>
+                {!editState ? "Enregistrer" : "En cours... "}
+            </Button>
+           <div className={"m-2"}>
+               <Table striped bordered hover size="sm" responsive="md" style={{margin: 0}}>
                    <thead>
                    <tr>
-                       <th>id</th>
-                       <th>Nom d'exposant</th>
+                   <th onClick={() => sortBy("nom_exposant", orderNom_exposant, setOrderNom_esposant)}>Nom d'exposant</th>
                        <th>Premier contact</th>
                        <th>Deuxième contact</th>
-                       <th>Troisème contact</th>
+                       <th>Troisième contact</th>
                        <th>Est present</th>
                        <th>CR envoyé</th>
                        <th>Commentaire</th>
-                       <th>Modifier</th>
-                       <th>Supprimer</th>
                    </tr>
                    </thead>
                    <tbody>
+
                    {
                        exposants.map(exposant => (
                            <tr key={exposant.id_suivi}>
-                               <br/>
                                <td> {exposant.nom_exposant} </td>
                                <td> {exposant.premier_contact} </td>
                                <td> {exposant.deuxieme_contact} </td>
@@ -54,8 +78,6 @@ const Suivis = (props) => {
                                <td> {exposant.est_present.toString()} </td>
                                <td> {exposant.cr_envoye.toString()} </td>
                                <td> {exposant.commentaire} </td>
-                               <td> <Button variant="warning">Modifier</Button> </td>
-                               <td> <Button variant="info">Supprimer</Button> </td>
                            </tr>
 
 

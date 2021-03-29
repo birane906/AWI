@@ -52,9 +52,9 @@ const Zones = (props) => {
                     <div>
                         <h2> {zone.name_zone}</h2>
                         <h4> Jeux réservés</h4>
-                        <Button  onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>v</Button>
-                        <Collapse in={open}>
-                        <Table  striped bordered hover size="sm">
+                        <Button  id={zone.name_zone} onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>v</Button>
+                        <Collapse id={zone.name_zone} in={open}>
+                        <Table  id={zone.name_zone} striped bordered hover size="sm">
                             <thead>
                                 <tr>
                                     <th>Nom du jeu</th>
