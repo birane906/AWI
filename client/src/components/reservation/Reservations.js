@@ -45,10 +45,61 @@ const Reservations = () => {
 
     const [ editState, setEditState ] = useState(false)
 
+    const handleValReservationChange = (value, name, index) => {
+        console.log(name, value);
+        const newValReservation = {
+            ...displayedReservations[index],
+            [name]: value
+        }
+        var newDisplayedReservations = [...displayedReservations]
+        newDisplayedReservations[index] = newValReservation
+        setDisplayedReservations(newDisplayedReservations)
+        console.log(displayedReservations[index]);
+    }
+
+    const saveEdit = () => {
+        setEditState(true)
+        const currentReservations = [...displayedReservations]
+        const oldReservations = [...reservations]
+        currentReservations.sort((a, b) => {
+            if (a["nom_exposant"].toUpperCase() > b["nom_exposant"].toUpperCase()) {
+                return 1
+            }
+            
+            return -1
+        })
+        oldReservations.sort((a, b) => {
+            if (a["nom_exposant"].toUpperCase() > b["nom_exposant"].toUpperCase()) {
+                return 1
+            }
+            
+            return -1
+        })
+        var toUpdate = []
+
+        for (let i = 0; i < oldReservations.length; i++) {
+            for (let key of Object.keys(displayedReservations[0])) {
+                if (oldReservations[i][key] != currentReservations[i][key] && currentReservations[i]["id_festival"]) {
+                    toUpdate.push(currentReservations[i])
+                    break;
+                }
+            }
+        }
+
+        console.log(toUpdate);
+
+        axios.put("/api/reservations", {data: toUpdate})
+            .then(res => {
+                setEditState(false)
+            })
+            .catch(err => console.log(err))
+
+    }
+
     return (
         <div>
             <h1>Réservations</h1>
-            <Button variant={!editState ? "primary" : "secondary "} className="m-2" onClick={() => setEditState(!editState)}>
+            <Button variant={!editState ? "primary" : "secondary "} className="m-2" onClick={saveEdit} disabled={editState}>
                 {!editState ? "Enregistrer" : "En cours... "}
             </Button>
             <div className={"m-2"}>
@@ -65,7 +116,7 @@ const Reservations = () => {
                     <tbody>
                         {
                             displayedReservations.map((value, index) => {
-                                return <Reservation datas={value} key={index}/>
+                                return <Reservation datas={value} key={index} index={index} onChange={handleValReservationChange}/>
                             })
                         }
                     </tbody>
