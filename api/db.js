@@ -1,13 +1,13 @@
-const { Client } = require('pg')
+const { Pool } = require('pg')
 
 // A modifier en fonction de votre setup local
 // NE JAMAIS PUSH CE FICHIER
-const db = new Client({
+const db = new Pool({
     user: "postgres",
-    password: "xiang1997",
+    password: "admin",
     host: "localhost",
-    port: "5433",
-    database: "FDJ",
+    port: "15432",
+    database: "AWI"
 })
 
 db.connect()

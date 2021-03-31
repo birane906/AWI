@@ -1,55 +1,36 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 import './Exposant.css'
-import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
 
-const Exposants = (props) => {
-    const [exposants,setExposants]=useState([]);
+const Exposant = (props) => {
 
-    const getExposants = async()=>{
-        try{
-            const response = await fetch("http://localhost:8080/api/exposant");
-            const jsonData = await response.json();
-            setExposants(jsonData);
+    const history = useHistory()
 
-        }catch(err){
-            console.error(err.message)
-        }
+    function dateFormat(date) {
+        return date ? new Date(date) :null;
     }
-    useEffect(()=>{
-        getExposants();
-    },[]);
-    console.log(exposants)
+
+    const valExposant = {
+        id_exposant : props.datas.id_exposant,
+        nom_exposant : props.datas.nom_exposant
+    }
+
+    var rowCss = null
+
+    const handleValExposantChange = props.onChange
+
+    const handleRowClick = () => {
+        history.push(`/dashboard/exposants/${valExposant.nom_exposant}&id_exposant=${valExposant.id_exposant}`)
+    }
 
     return(
-        <div>
-            <h2> Liste d'exposant </h2>
-            <div>
-                <Table striped bordered hover size="sm">
-                    <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Nom d'exposant</th>
-                        <th>Supprimer</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        exposants.map(exposant => (
-                            <tr key={exposant.id_exposant}>
-                                <td> {exposant.id_exposant}</td>
-                                <td> {exposant.nom_exposant} </td>
-                                <td> <Button variant="info">Supprimer</Button> </td>
-                            </tr>
+        <tr className={rowCss}>
+            <td style={{cursor: "pointer"}} onClick={handleRowClick}>{valExposant.nom_exposant}</td>
+            
+        </tr>
+    )
+};
 
-                        ))
-                    }
-                    </tbody>
-                </Table>
-            </div>
-
-        </div>
-    );
-}
-
-export default Exposants
+export default Exposant;
