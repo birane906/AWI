@@ -34,7 +34,8 @@ router.put('/', (req, res) => {
         SET 
             date_emision_facture=${reservation.date_emision_facture ? `date '${reservation.date_emision_facture}' + interval '1' day` : "NULL"}, 
             date_reservation=${reservation.date_reservation ? `date '${reservation.date_reservation}' + interval '1' day` : "NULL"}, 
-            date_paiment_facture=${reservation.date_paiment_facture ? `date '${reservation.date_paiment_facture}' + interval '1' day` : "NULL"}
+            date_paiment_facture=${reservation.date_paiment_facture ? `date '${reservation.date_paiment_facture}' + interval '1' day` : "NULL"},
+            id_etat_reservation=${reservation.id_etat_reservation ? reservation.id_etat_reservation : "NULL"}
         WHERE 
             id_reservation=${reservation.id_reservation};
     `

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import './Reservation.css'
+import { Form } from 'react-bootstrap';
 
 const Reservation = (props) => {
 
@@ -56,6 +57,16 @@ const Reservation = (props) => {
             </td>
             <td className="tdEditor">
                 <DatePicker selected={valReservation.date_paiment_facture} onChange={date => handleValReservationChange(date, "date_paiment_facture", props.index)} />
+            </td>
+            <td>
+                <Form.Control as="select" value={valReservation.libelle_etat_reservation} onChange={e => handleValReservationChange(e.target.value, "libelle_etat_reservation", props.index)}>
+                    {
+                        Object.keys(props.allEtat).map((value, index) => {
+                            return <option key={index}>{value}</option>
+                        })
+                    }
+                    <option style={{display: "none"}} disabled value=""></option>
+                </Form.Control>
             </td>
         </tr>
     )

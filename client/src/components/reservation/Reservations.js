@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Alert, Button, Table } from 'react-bootstrap';
 import axios from 'axios';
 import Reservation from './Reservation';
+import './Reservations.css'
 
 const Reservations = () => {
     const [ reservations, setReservations ] = useState([]);
     const [ displayedReservations, setDisplayedReservations ] = useState([])
+    const [ allEtat, setAllEtat ] = useState({});
 
     function loadReservations() {
         axios.get('/api/reservations')
@@ -20,6 +22,16 @@ const Reservations = () => {
                 setDisplayedReservations(resData)
             })
             .catch(err => console.log(err))
+        
+        axios.get('/api/etat_reservation')
+            .then(res => {
+                var newEtat = {}
+                res.data.forEach(value => {
+                    newEtat[value.libelle_etat_reservation] = value.id_etat_reservation
+                })
+                setAllEtat(newEtat)
+            })
+            .catch(err => console.log(err))
     }
 
     useEffect(() => loadReservations(), [])
@@ -29,6 +41,7 @@ const Reservations = () => {
     const [ orderPrix_prestation, setOrderPrix_prestation] = useState(1)
     const [ orderDate_emision_facture, setOrderDate_emision_facture] = useState(1)
     const [ orderDate_paiment_facture, setOrderDate_paiment_facture] = useState(1)
+    const [ orderLibelle_etat_reservation, setOrderLibelle_etat_reservation] = useState(1)
 
     const sortBy = (key, order, setOrder) => {
         const newDisplay = [...displayedReservations]
@@ -59,6 +72,7 @@ const Reservations = () => {
 
     const saveEdit = () => {
         setEditState(true)
+        setAlertBox(null)
         const currentReservations = [...displayedReservations]
         const oldReservations = [...reservations]
         currentReservations.sort((a, b) => {
@@ -86,19 +100,34 @@ const Reservations = () => {
             }
         }
 
+        toUpdate = toUpdate.map((val) => {
+            return {
+                ...val,
+                ["id_etat_reservation"]: allEtat[val.libelle_etat_reservation]
+            }
+        })
+
         console.log(toUpdate);
 
         axios.put("/api/reservations", {data: toUpdate})
             .then(res => {
+                setAlertBox('success')
                 setEditState(false)
             })
             .catch(err => console.log(err))
 
     }
 
+    const [ alertBox, setAlertBox ] = useState(null)
+
     return (
         <div>
             <h1>Réservations</h1>
+            <div className="alertBox">
+                <Alert show={alertBox != null} onClose={() => setAlertBox(null)} variant={alertBox} dismissible>
+                    <p>Changements enregistrés avec succès</p>
+                </Alert>
+            </div>
             <Button variant={!editState ? "primary" : "secondary "} className="m-2" onClick={saveEdit} disabled={editState}>
                 {!editState ? "Enregistrer" : "En cours... "}
             </Button>
@@ -111,12 +140,13 @@ const Reservations = () => {
                             <th onClick={() => sortBy("prix_prestation", orderPrix_prestation, setOrderPrix_prestation)}>Prix de la réservation</th>
                             <th onClick={() => sortBy("date_emision_facture", orderDate_emision_facture, setOrderDate_emision_facture)}>Date d'émission de la facture</th>
                             <th onClick={() => sortBy("date_paiment_facture", orderDate_paiment_facture, setOrderDate_paiment_facture)}>Date de paiement de la facture</th>
+                            <th onClick={() => sortBy("libelle_etat_reservation", orderLibelle_etat_reservation, setOrderLibelle_etat_reservation)}>Etat de la réservation</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             displayedReservations.map((value, index) => {
-                                return <Reservation datas={value} key={index} index={index} onChange={handleValReservationChange}/>
+                                return <Reservation datas={value} key={index} index={index} onChange={handleValReservationChange} allEtat={allEtat}/>
                             })
                         }
                     </tbody>
