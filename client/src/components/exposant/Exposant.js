@@ -14,15 +14,17 @@ const Exposant = (props) => {
 
     const valExposant = {
         id_exposant : props.datas.id_exposant,
-        nom_exposant : props.datas.nom_exposant
+        nom_exposant : props.datas.nom_exposant,
     }
+
+    
 
     var rowCss = null
 
     const handleValExposantChange = props.onChange
 
     const handleRowClick = () => {
-        history.push(`/dashboard/exposants/${valExposant.nom_exposant}&id_exposant=${valExposant.id_exposant}`)
+        history.push(`/dashboard/exposant/${valExposant.nom_exposant}&id_exposant=${valExposant.id_exposant}`)
     }
 
     return(
