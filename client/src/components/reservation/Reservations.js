@@ -93,7 +93,7 @@ const Reservations = () => {
 
         for (let i = 0; i < oldReservations.length; i++) {
             for (let key of Object.keys(displayedReservations[0])) {
-                if (oldReservations[i][key] != currentReservations[i][key] && currentReservations[i]["id_festival"]) {
+                if (oldReservations[i][key] !== currentReservations[i][key] && currentReservations[i]["id_festival"]) {
                     toUpdate.push(currentReservations[i])
                     break;
                 }

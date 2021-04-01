@@ -1,6 +1,5 @@
 import React from 'react'
 import "./Festival.css"
-import { Table } from 'react-bootstrap';
 
 function Festival(props) {
   return (

@@ -99,15 +99,6 @@ const Exposant = (props) => {
                                 <Button variant="secondary" onClick={handleClose}>Fermer</Button>
                             </Modal.Footer>
                         </Modal>
-
-                      
-                            
-                    
-
-
-                
-
-
             </div>
         )
     }

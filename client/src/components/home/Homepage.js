@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import './Hompage.css'
-import Table from 'react-bootstrap/Table'
+import React from 'react'
+import './Homepage.css'
 import Button from 'react-bootstrap/Button'
 import Image from "react-bootstrap/Image";
 import CardDeck from "react-bootstrap/Card";
@@ -42,7 +41,7 @@ const Homepage=(props) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Link to="/dashboard/suivi">
+                        <Link to="/dashboard/suivis">
                             <Button variant="primary" size="lg" block>
                                 Voir liste de suivi
                             </Button>
