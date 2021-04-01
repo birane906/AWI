@@ -8,7 +8,7 @@ import {Modal,Button} from 'react-bootstrap'
 
 const Exposant = (props) => {
     const [exposants,setExposants]=useState([]);
-    const [contacts,setcontacts]=useState([]);
+    const [contacts,setContacts]=useState([]);
     const [modalInfo, setModalInfo] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [show, setShow] = useState(false);
@@ -34,7 +34,7 @@ const Exposant = (props) => {
         try{
             const response = await fetch("http://localhost:8080/api/contact");
             const jsonData = await response.json();
-            setExposants(jsonData);
+            setContacts(jsonData);
 
         }catch(err){
             console.error(err.message)
@@ -44,6 +44,8 @@ const Exposant = (props) => {
         getContacts();
     },[]);
     console.log(contacts)
+
+    
 
     const columns = [
         {dataField : "id_exposant", text : "Numero id"},
@@ -62,33 +64,38 @@ const Exposant = (props) => {
         setShowModal(handleShow)
     };
 
+    
+
     const ModalContent = () => {
         return(
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{modalInfo.nom_exposant}</Modal.Title>
-                    
-                </Modal.Header>
-                <Modal.Body>
-                <h1>Liste de contacts</h1> 
-                    {
-                        contacts.map((contact, id) =>{
-                            return(
+            <div>
+                 {
+                    contacts.map((c, id) => { 
+                      if(c.id_exposant == modalInfo.id_exposant){           
+                    return(
+                        <Modal show={show} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>{modalInfo.nom_exposant}</Modal.Title>
+                            </Modal.Header>
                             <div>
-                                AAA
-                                <div>AAAAAAAAAAAAAAAAAAAAAA</div>
-                                <div>AAAAAAAAAAAAAAAAAAAAAA</div>
+                                <h1>Liste de contacts</h1> 
+                                <ul>
+                                <ol>Nom : {c.prenom} {c.nom}</ol>
+                                <ol>Contact primaire : {c.isPremary ? "oui" : "non"} </ol>
+                                <ol>Mail : {c.email_contact}</ol>
+                                <ol>Téléphone : {c.tel_contact}</ol>
+                                <ol>Téléphone Bureau : {c.tel_bureau}</ol>
+                                <ol>Adresse : {c.adr_rue_contact} {c.adr_cp_contact} {c.adr_ville_contact}</ol>
+                                <ol>____________________________________________________________________________</ol>
+                                </ul>
+                            </div>
+                        </Modal>
+                            )} 
+                    })
 
-                                <div>AAAAAAAAAAAAAAAAAAAAAA</div>
 
-                                </div>)
-                        })
-                    }
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>Fermer</Button>
-                </Modal.Footer>
-            </Modal>
+                }
+            </div>
         )
     }
 
