@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
+import './Jeux.css'
 
 
 const Jeux = (props) => {
@@ -22,7 +23,7 @@ const Jeux = (props) => {
     console.log(jeu)
 
     return(
-        <div>
+        <div className="cards">
             <h2> Liste des jeux</h2>
            <div className="m-2">
                <Table striped bordered hover size="sm" style={{margin: 0}}>
