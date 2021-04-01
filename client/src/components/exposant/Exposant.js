@@ -1,10 +1,19 @@
 import React, {useEffect, useState} from 'react'
 import './Exposant.css'
 import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
+import BootStrapTable from 'react-bootstrap-table-next'
+import paginationFactory from 'react-bootstrap-table2-paginator'
+import {Modal,Button} from 'react-bootstrap'
+
 
 const Exposant = (props) => {
     const [exposants,setExposants]=useState([]);
+    const [contacts,setcontacts]=useState([]);
+    const [modalInfo, setModalInfo] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const getExposants = async()=>{
         try{
@@ -21,33 +30,82 @@ const Exposant = (props) => {
     },[]);
     console.log(exposants)
 
+    const getContacts = async()=>{
+        try{
+            const response = await fetch("http://localhost:8080/api/contact");
+            const jsonData = await response.json();
+            setExposants(jsonData);
+
+        }catch(err){
+            console.error(err.message)
+        }
+    }
+    useEffect(()=>{
+        getContacts();
+    },[]);
+    console.log(contacts)
+
+    const columns = [
+        {dataField : "id_exposant", text : "Numero id"},
+        {dataField : "nom_exposant", text : "Nom exposant"}
+    ]
+   
+    const rowEvents = {
+        onClick : (e,row) =>{
+            console.log(row)
+            setModalInfo(row)
+            toggleTrueFalse()
+        }
+    }
+
+    const toggleTrueFalse = () =>{
+        setShowModal(handleShow)
+    };
+
+    const ModalContent = () => {
+        return(
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>{modalInfo.nom_exposant}</Modal.Title>
+                    
+                </Modal.Header>
+                <Modal.Body>
+                <h1>Liste de contacts</h1> 
+                    {
+                        contacts.map((contact, id) =>{
+                            return(
+                            <div>
+                                AAA
+                                <div>AAAAAAAAAAAAAAAAAAAAAA</div>
+                                <div>AAAAAAAAAAAAAAAAAAAAAA</div>
+
+                                <div>AAAAAAAAAAAAAAAAAAAAAA</div>
+
+                                </div>)
+                        })
+                    }
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>Fermer</Button>
+                </Modal.Footer>
+            </Modal>
+        )
+    }
+
     return(
         <div>
             <h2> Liste d'exposant </h2>
-            <div>
-                <Table striped bordered hover size="sm">
-                    <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Nom d'exposant</th>
-                        <th>Supprimer</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        exposants.map(exposant => (
-                            <tr key={exposant.id_exposant}>
-                                <td> {exposant.id_exposant}</td>
-                                <td> {exposant.nom_exposant} </td>
-                                <td> <Button variant="info">Supprimer</Button> </td>
-                            </tr>
-
-                        ))
-                    }
-                    </tbody>
-                </Table>
-            </div>
-
+            
+                <BootStrapTable
+                    keyField="id_exposant"
+                    data={exposants}
+                    columns={columns}
+                    pagination={paginationFactory()}
+                    rowEvents={rowEvents}
+                />
+                
+            
+            {show ? <ModalContent/> : null}
         </div>
     );
 }

@@ -12,7 +12,7 @@ exposantRouter.use(express.json());
 exposantRouter.get('/',function(req,res){
     try{
         const allSuivi =  pool.query("SELECT * FROM exposant").then(data=>{
-            //console.log(data)
+            
             res.json(data.rows);
         });
     }catch(err){
