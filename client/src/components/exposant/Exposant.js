@@ -69,32 +69,45 @@ const Exposant = (props) => {
     const ModalContent = () => {
         return(
             <div>
-                 {
-                    contacts.map((c, id) => { 
-                      if(c.id_exposant == modalInfo.id_exposant){           
-                    return(
-                        <Modal show={show} onHide={handleClose}>
+                 
+                        <Modal show={show} onHide={handleClose} key={modalInfo.id_contact}>
                             <Modal.Header closeButton>
                                 <Modal.Title>{modalInfo.nom_exposant}</Modal.Title>
                             </Modal.Header>
-                            <div>
-                                <h1>Liste de contacts</h1> 
-                                <ul>
-                                <ol>Nom : {c.prenom} {c.nom}</ol>
-                                <ol>Contact primaire : {c.isPremary ? "oui" : "non"} </ol>
-                                <ol>Mail : {c.email_contact}</ol>
-                                <ol>Téléphone : {c.tel_contact}</ol>
-                                <ol>Téléphone Bureau : {c.tel_bureau}</ol>
-                                <ol>Adresse : {c.adr_rue_contact} {c.adr_cp_contact} {c.adr_ville_contact}</ol>
-                                <ol>____________________________________________________________________________</ol>
-                                </ul>
-                            </div>
+                            <h1>Liste de contacts</h1>
+                            {  
+                                contacts.map((c, id) => { 
+                                    if(c.id_exposant == modalInfo.id_exposant){           
+                                        return(
+                                        <div>
+                                             
+                                            <ul>
+                                            <ol>Nom : {c.prenom} {c.nom}</ol>
+                                            <ol>Contact primaire : {c.isPremary ? "oui" : "non"} </ol>
+                                            <ol>Mail : {c.email_contact}</ol>
+                                            <ol>Téléphone : {c.tel_contact}</ol>
+                                            <ol>Téléphone Bureau : {c.tel_bureau}</ol>
+                                            <ol>Adresse : {c.adr_rue_contact} {c.adr_cp_contact} {c.adr_ville_contact}</ol>
+                                            <ol>____________________________________________________________________________</ol>
+                                            </ul>
+                                        </div>
+                                        )
+                                    } 
+                                })
+                            }
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>Fermer</Button>
+                            </Modal.Footer>
                         </Modal>
-                            )} 
-                    })
+
+                      
+                            
+                    
 
 
-                }
+                
+
+
             </div>
         )
     }
