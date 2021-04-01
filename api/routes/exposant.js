@@ -11,8 +11,8 @@ exposantRouter.use(express.json());
 // get all exposant
 exposantRouter.get('/',function(req,res){
     try{
-        const allSuivi =  pool.query("SELECT * FROM exposant").then(data=>{
-            //console.log(data)
+        const allSuivi =  pool.query("select * from exposant").then(data=>{
+            
             res.json(data.rows);
         });
     }catch(err){
