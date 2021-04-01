@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Festival.css"
+import { Table } from 'react-bootstrap';
 
 function Festival(props) {
   return (
@@ -10,7 +11,7 @@ function Festival(props) {
         props.specs.map((value, index) => {
           return (
             <div key={index}>
-              <h3>Espace</h3>
+              <th>Espace</th>
               <ul>
                 <li>Nombre de tables : {value.nb_table}</li>
                 <li>Prix des tables : {value.prix_table} €</li>
