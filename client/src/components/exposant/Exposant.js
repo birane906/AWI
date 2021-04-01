@@ -88,7 +88,7 @@ const Exposant = (props) => {
                                             <ol>Téléphone : {c.tel_contact}</ol>
                                             <ol>Téléphone Bureau : {c.tel_bureau}</ol>
                                             <ol>Adresse : {c.adr_rue_contact} {c.adr_cp_contact} {c.adr_ville_contact}</ol>
-                                            <ol>____________________________________________________________________________</ol>
+                                            <hr />
                                             </ul>
                                         </div>
                                         )
