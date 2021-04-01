@@ -23,7 +23,7 @@ const Jeux = (props) => {
 
     return(
         <div>
-            <h2> Jeux du festival </h2>
+            <h2> Liste des jeux</h2>
            <div className="m-2">
                <Table striped bordered hover size="sm" style={{margin: 0}}>
                    <thead>
