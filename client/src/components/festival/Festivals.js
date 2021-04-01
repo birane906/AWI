@@ -7,7 +7,7 @@ import FestivalCreationPopup from './FestivalCreationPopup'
 
 
 function Festivals() {
-  
+
     const [ festivals, setFestivals ] = useState([])
     const [ showPopup, setShowPopup ] = useState(false)
     const location = useLocation()
@@ -68,11 +68,11 @@ function Festivals() {
                     })
                 }
             </div>
-            <Button variant="success" onClick={() => setShowPopup(true)}>Créer un nouveau festival</Button>  
+            <Button variant="success" onClick={() => setShowPopup(true)}>Créer un nouveau festival</Button>
             {
                 showPopup ? <FestivalCreationPopup closePopup={() => setShowPopup(false)} reloadFestivals={loadFestivals} /> : null
             }
-        </div>  
+        </div>
     )
 }
 
