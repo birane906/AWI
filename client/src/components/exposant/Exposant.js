@@ -3,7 +3,7 @@ import './Exposant.css'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 
-const Exposants = (props) => {
+const Exposant = (props) => {
     const [exposants,setExposants]=useState([]);
 
     const getExposants = async()=>{
@@ -52,4 +52,4 @@ const Exposants = (props) => {
     );
 }
 
-export default Exposants
+export default Exposant
