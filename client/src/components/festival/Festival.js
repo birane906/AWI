@@ -1,9 +1,9 @@
 import React from 'react'
 import "./Festival.css"
+import ListGroup from 'react-bootstrap/ListGroup'
 
 function Festival(props) {
     return (
-        
           <div className="content">
            <h2> {props.name}</h2>
            <h3>Année {props.year}</h3>
@@ -22,9 +22,6 @@ function Festival(props) {
                   })
               }
           </div>
-
-        
-        
     )
 }
 
