@@ -16,18 +16,19 @@ const Homepage=(props) => {
                 </div>
                 <h2>Dashboard admin</h2>
             </div>
+            <div class="cards">
             <CardDeck>
                 <Card>
                     <Card.Body>
-                        <Card.Title>Liste d'exposant</Card.Title>
+                        <Card.Title>Liste des exposants</Card.Title>
                         <Card.Text>
-                            Vous trouvez ici liste d'exposant de chaque années
+                            Vous trouvez ici liste des exposants
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
                         <Link to="/dashboard/exposant">
-                            <Button variant="primary" size="lg" block>
-                                Voir liste d'exposant
+                            <Button variant="info" size="lg" block>
+                                Voir liste des exposants
                             </Button>
                         </Link>
 
@@ -35,15 +36,15 @@ const Homepage=(props) => {
                 </Card>
                 <Card>
                     <Card.Body>
-                        <Card.Title>Suivi d'exposant</Card.Title>
+                        <Card.Title>Suivi des exposants</Card.Title>
                         <Card.Text>
-                            Vous trouvez ici liste de suivi contact exposant
+                            Vous trouverez ici la liste de suivi des exposants
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
                         <Link to="/dashboard/suivis">
-                            <Button variant="primary" size="lg" block>
-                                Voir liste de suivi
+                            <Button variant="info" size="lg" block>
+                                Voir liste de suivis
                             </Button>
                         </Link>
 
@@ -51,14 +52,14 @@ const Homepage=(props) => {
                 </Card>
                 <Card>
                     <Card.Body>
-                        <Card.Title>Liste de zone</Card.Title>
+                        <Card.Title>Liste des zones</Card.Title>
                         <Card.Text>
                             Vous trouvez ici liste de zone
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
                         <Link to="/dashboard/zones">
-                            <Button variant="primary" size="lg" block>
+                            <Button variant="info" size="lg" block>
                                 Voir liste de zone
                             </Button>
                         </Link>
@@ -66,6 +67,7 @@ const Homepage=(props) => {
                     </Card.Footer>
                 </Card>
             </CardDeck>
+            </div>
         </div>
     );
 }

@@ -28,7 +28,7 @@
 }
 
 .sidenav a:hover {
-  background-color: #333;
+  background-color: rgb(27, 21, 21);
 }
 
 .sidenav .closebtn {
@@ -57,7 +57,7 @@
 }
 
 h2{
-  color: teal;
+  color: rgb(231, 231, 231);
   font-weight: bold;
   text-align: center;
   margin-bottom: 30px;
