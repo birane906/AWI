@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router"
 import './Login.css';
 import axios from "axios"
+import loginChecker from '../../middleware/loginChecker';
 
 const Login = () => {
+    const history = useHistory()
+    useEffect(() => loginChecker(history), [history])
 
     const [ login, setLogin ] = useState(null)
     const [ password, setPassword ] = useState(null)
     const [ error , setError ] = useState(false)
-    const history = useHistory()
 
     const formValid = () => {
         return login && password;

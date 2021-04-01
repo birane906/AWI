@@ -24,8 +24,8 @@ const Exposant = (props) => {
     return(
         <div>
             <h2> Liste d'exposant </h2>
-            <div>
-                <Table striped bordered hover size="sm">
+            <div className="m-2">
+                <Table striped bordered hover size="sm" style={{margin: 0}}>
                     <thead>
                     <tr>
                         <th>id</th>
