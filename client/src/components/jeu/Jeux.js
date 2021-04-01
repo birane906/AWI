@@ -42,7 +42,7 @@ const Jeux = (props) => {
                    <tbody>
                    {
                        jeu.map(j => (
-                           <tr key={j.id_jeu}>
+                           <tr key={j.id_jeu} class="text-center">
                                <td> {j.name_jeu} </td>
                                <td> {j.duree} </td>
                                <td> {j.nb_joueurs_min} - {j.nb_joueurs_max}</td>
@@ -53,7 +53,7 @@ const Jeux = (props) => {
                                 }
                                <td> {j.nom_editeur} </td>
                                <td> <Button variant="warning">Modifier</Button> </td>
-                               <td> <Button variant="info">Supprimer</Button> </td>
+                               <td > <Button variant="danger" >Supprimer</Button> </td>
                            </tr>
 
 
