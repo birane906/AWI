@@ -4,11 +4,6 @@ import { Link } from 'react-router-dom';
 import loginChecker from '../../middleware/loginChecker';
 import "./Dashboard.css"
 
-import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/Card'
-import Image from 'react-bootstrap/Image'
-import Button from 'react-bootstrap/Button'
-
 const Dashboard = (props) => {
     const history = useHistory()
     useEffect(() => loginChecker(history), [history])
@@ -54,7 +49,6 @@ const Dashboard = (props) => {
 
 const DashboardComponent = React.memo((props) => {
     const value = props.value
-    const index = props.index
     return (
         <div>
             <Route exact path={value.props.path} component={() => {return value}} />

@@ -72,7 +72,7 @@ const Zones = (props) => {
                                 {
                                 jeuReserve.map((j, id) => { 
                                     
-                                    if(zone.id_zone == j.id_zone){
+                                    if(zone.id_zone === j.id_zone){
                                         return(
                                             <tr key={j.id_zone}>
                                                 <td> {j.name_jeu}</td>
@@ -103,6 +103,7 @@ const Zones = (props) => {
                                             </tr>
                                         )
                                     }
+                                    return null
                                 
                                     
                                 })

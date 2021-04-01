@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import SearchBox from '../searchBox/SearchBox';
-import Suivi from './Suivi'
 import './Suivi.css'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
@@ -26,8 +24,8 @@ const Suivis = (props) => {
     return(
         <div>
             <h2> Suivi d'exposant </h2>
-           <div>
-               <Table striped bordered hover size="sm">
+           <div className="m-2">
+               <Table striped bordered hover size="sm" style={{margin: 0}}>
                    <thead>
                    <tr>
                        <th>id</th>

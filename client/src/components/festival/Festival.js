@@ -1,6 +1,5 @@
 import React from 'react'
 import "./Festival.css"
-import ListGroup from 'react-bootstrap/ListGroup'
 
 function Festival(props) {
     return (
@@ -8,18 +7,20 @@ function Festival(props) {
           <div className="content">
            <h2> {props.name}</h2>
            <h3>Année {props.year}</h3>
-
-            <ListGroup>
-                <ListGroup.Item>Nombre d'emplacement Total : </ListGroup.Item>
-                <ListGroup.Item>Prix Emplacement Premium</ListGroup.Item>
-                <ListGroup.Item>Prix Emplacement Standard</ListGroup.Item>
-                <ListGroup.Item>Prix Emplacement Promo</ListGroup.Item>
-                <ListGroup.Item>Nombre de m²</ListGroup.Item>
-                <ListGroup.Item>Nombre de m² buvette</ListGroup.Item>
-                <ListGroup.Item>Nombre d'emplacement Premium</ListGroup.Item>
-                <ListGroup.Item>Nombre d'emplacement Standard</ListGroup.Item>
-                <ListGroup.Item>Nombre d'emplacement Standard</ListGroup.Item>
-            </ListGroup>
+              {
+                  props.specs.map((value, index) => {
+                      return (
+                          <div key={index}>
+                              <th>Espace</th>
+                              <ListGroup>
+                                  <ListGroup.Item>Nombre de tables : {value.nb_table}</ListGroup.Item>
+                                  <ListGroup.Item>Prix des tables : {value.prix_table} €</ListGroup.Item>
+                                  <ListGroup.Item>Prix des m² : {value.prix_m2} €</ListGroup.Item>
+                              </ListGroup>
+                          </div>
+                      )
+                  })
+              }
           </div>
 
         
