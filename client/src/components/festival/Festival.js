@@ -1,30 +1,25 @@
 import React from 'react'
 import "./Festival.css"
+import ListGroup from 'react-bootstrap/ListGroup'
 
 function Festival(props) {
     return (
         
           <div className="content">
-           <h1> {props.name}</h1>  
-           <h2>Année {props.year}</h2>  
-            Nombre d'emplacement Total *nbEmplTotalDuFestivalBDD*
-            <br/>
-            Prix Emplacement Premium *prix*  
-            <br/>
-            Nombre de m² *nbm2*
-            <br/>
-          Nombre de m² buvette *nbm2buvette*
-          <br/>
-            Nombre d'emplacement Premium *nbEmplTotalDuFestivalBDD*
-            <br/>
-            Prix Emplacement Premium *prix* 
-            <br/> 
-            Nombre de m² premium *nbm2p*
-            <br/>
-       
-            Nombre d'emplacement Promo *nbEmplTotalDuFestivalBDD*  
-            <br/>
-            Prix Emplacement Premium *prix*  
+           <h2> {props.name}</h2>
+           <h3>Année {props.year}</h3>
+
+            <ListGroup>
+                <ListGroup.Item>Nombre d'emplacement Total : </ListGroup.Item>
+                <ListGroup.Item>Prix Emplacement Premium</ListGroup.Item>
+                <ListGroup.Item>Prix Emplacement Standard</ListGroup.Item>
+                <ListGroup.Item>Prix Emplacement Promo</ListGroup.Item>
+                <ListGroup.Item>Nombre de m²</ListGroup.Item>
+                <ListGroup.Item>Nombre de m² buvette</ListGroup.Item>
+                <ListGroup.Item>Nombre d'emplacement Premium</ListGroup.Item>
+                <ListGroup.Item>Nombre d'emplacement Standard</ListGroup.Item>
+                <ListGroup.Item>Nombre d'emplacement Standard</ListGroup.Item>
+            </ListGroup>
           </div>
 
         
