@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 import loginChecker from '../../middleware/loginChecker';
 import "./Dashboard.css"
 
+import Card from 'react-bootstrap/Card'
+import CardDeck from 'react-bootstrap/Card'
+import Image from 'react-bootstrap/Image'
+import Button from 'react-bootstrap/Button'
+
 const Dashboard = (props) => {
     const history = useHistory()
     useEffect(() => loginChecker(history), [history])
@@ -13,13 +18,13 @@ const Dashboard = (props) => {
     function openNav() {
         setNavWidth(250)
       }
-      
+
     function closeNav() {
         setNavWidth(0)
     }
 
     return (
-        
+
         <div>
             <div id="mySidenav" className="sidenav" style={{ width: navWidth}}>
                 {
@@ -42,6 +47,7 @@ const Dashboard = (props) => {
                 }
             </div>
         </div>
+
         
     );
 };
