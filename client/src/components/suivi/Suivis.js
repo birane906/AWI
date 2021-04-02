@@ -22,13 +22,13 @@ const Suivis = (props) => {
     console.log(exposants)
 
     return(
-        <div>
+        <div className="cards">
             <h2> Suivi d'exposant </h2>
            <div className="m-2">
                <Table striped bordered hover size="sm" style={{margin: 0}}>
                    <thead>
                    <tr>
-                       <th>id</th>
+                       
                        <th>Nom d'exposant</th>
                        <th>Premier contact</th>
                        <th>Deuxième contact</th>
@@ -44,7 +44,7 @@ const Suivis = (props) => {
                    {
                        exposants.map(exposant => (
                            <tr key={exposant.id_suivi}>
-                               <br/>
+                               
                                <td> {exposant.nom_exposant} </td>
                                <td> {exposant.premier_contact} </td>
                                <td> {exposant.deuxieme_contact} </td>

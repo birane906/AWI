@@ -104,8 +104,8 @@ const Exposant = (props) => {
     }
 
     return(
-        <div>
-            <h2> Liste d'exposant </h2>
+        <div className="cards">
+            <h2> Liste des exposants </h2>
             
                 <BootStrapTable
                     keyField="id_exposant"

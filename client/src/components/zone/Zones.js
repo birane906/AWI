@@ -43,13 +43,13 @@ const Zones = (props) => {
 
 
     return(
-        <div>
+        <div className="cards">
             
             <h1> Listes des zones </h1>
             {       
                 zones.map((zone, id) =>{
                     return(
-                    <div>
+                    <div className="border">
                         <h2> {zone.name_zone}</h2>
                         <h4> Jeux réservés</h4>
                         <Button  onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>v</Button>

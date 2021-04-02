@@ -121,7 +121,7 @@ const Reservations = () => {
     const [ alertBox, setAlertBox ] = useState(null)
 
     return (
-        <div>
+        <div className="cards">
             <h1>Réservations</h1>
             <div className="alertBox">
                 <Alert show={alertBox != null} onClose={() => setAlertBox(null)} variant={alertBox} dismissible>
